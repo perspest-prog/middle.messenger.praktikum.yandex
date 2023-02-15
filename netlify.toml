@@ -6,4 +6,4 @@
 # “publish” is the directory to publish (relative to the root of your repo).
 
 [build]
-  command = "parcel build src/index.pug --public-url ./ --no-cache && node ./server.js"
+  command = "npm run start"

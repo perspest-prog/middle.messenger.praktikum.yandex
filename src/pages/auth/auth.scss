@@ -1,0 +1,24 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body, html{
+    background-color: white;
+    font-family: "Montserrat", serif;
+    font-weight: normal;
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+@media screen and (max-width: 440px) {
+    .form{
+        border: none;
+    }
+}
+@media screen and (max-height: 600px) {
+    .form{
+        border: none;
+        height: 100%;
+    }
+}

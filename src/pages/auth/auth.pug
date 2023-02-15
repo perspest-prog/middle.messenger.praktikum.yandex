@@ -1,0 +1,27 @@
+doctype html
+html(lang="ru")
+    head
+        - var title = 'Авторизация'
+        include ../../components/head/head.pug
+        link(rel="stylesheet", href="../../components/button/button.scss")
+        link(rel="stylesheet", href="../../components/input/input.scss")
+        link(rel="stylesheet", href="../../components/form/form.scss")
+        link(rel="stylesheet", href="./auth.scss")
+        script(src='../../utils/visible.js' defer='')
+    body 
+        div(class="form")
+            h1(class="form__logo") Вход
+            form(action="#" class="form__main")
+                - var _type = 'text'
+                - var _name = 'login'
+                - var placeholder = 'Логин'
+                - var visible = false
+                include ../../components/input/input.pug
+                - var _type = 'password'
+                - var _name = 'pass'
+                - var placeholder = 'Пароль'
+                - var visible = true
+                include ../../components/input/input.pug
+                - var content = 'Войти'
+                include ../../components/button/button.pug
+            a(href="#" class="form__noaccount") Нет аккаунта?

@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Messenger",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "parcel src/index.pug --open --port 3000",
+    "build": "parcel build src/index.pug --public-url ./ --no-cache",
+    "start": "npm run build && node ./server.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +17,15 @@
   "bugs": {
     "url": "https://github.com/perspest-prog/middle.messenger.praktikum.yandex/issues"
   },
-  "homepage": "https://github.com/perspest-prog/middle.messenger.praktikum.yandex#readme"
+  "homepage": "https://github.com/perspest-prog/middle.messenger.praktikum.yandex#readme",
+  "devDependencies": {
+    "parcel": "^2.8.3"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "engines": {
+    "node": "^16.17.0",
+    "npm": "^8.15.0"
+  }
 }

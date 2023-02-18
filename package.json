@@ -6,7 +6,7 @@
     "install": "npm i parcel -D && npm i express",
     "dev": "parcel src/index.pug --open --port 3000",
     "build": "parcel build src/index.pug --public-url ./ --no-cache",
-    "start": "npm run build && node ./server.js"
+    "start": "node ./server.js"
   },
   "repository": {
     "type": "git",

@@ -28,6 +28,10 @@ app.get('/error', (req, res) => {
     res.sendFile(path.resolve(dist, 'pages', 'error', 'error.html'))
 })
 
+app.get('/edit', (req, res) => {
+    res.sendFile(path.resolve(dist, 'pages', 'edit', 'edit.html'))
+})
+
 app.listen(DEV_PORT, () => {
     console.log(`The ${DEV_PORT}'s port is being listened!`)
 })

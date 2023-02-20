@@ -9,28 +9,39 @@ html(lang="ru")
         link(rel="stylesheet", href="./reg.scss")
         script(src='../../utils/visible.js' defer='')
     body
-        div(class="form")
-            h1(class="form__logo") Регистрация
-            form(action="#" class="form__main")
-                - var _type = 'tel'
-                - var _name = 'tel'
-                - var placeholder = 'Номер телефона'
-                - var visible = false
-                include ../../components/input/input.pug
-                - var _type = 'text'
-                - var _name = 'login'
-                - var placeholder = 'Логин'
-                - var visible = false
-                include ../../components/input/input.pug
-                - var _type = 'text'
-                - var _name = 'name'
-                - var placeholder = 'Имя'
-                - var visible = false
-                include ../../components/input/input.pug
-                - var _type = 'password'
-                - var _name = 'pass'
-                - var placeholder = 'Пароль'
-                - var visible = true
-                include ../../components/input/input.pug
-                - var content = 'Зарегистрироваться'
-                include ../../components/button/button.pug
+        main
+            div(class="form")
+                h1(class="form__logo") Регистрация
+                form(action="#" class="form__main")
+                    - var _type = 'tel'
+                    - var _name = 'phone'
+                    - var placeholder = 'Номер телефона'
+                    - var visible = false
+                    include ../../components/input/input.pug
+                    - var _type = 'email'
+                    - var _name = 'email'
+                    - var placeholder = 'Почта'
+                    - var visible = false
+                    include ../../components/input/input.pug
+                    - var _type = 'text'
+                    - var _name = 'login'
+                    - var placeholder = 'Логин'
+                    - var visible = false
+                    include ../../components/input/input.pug
+                    - var _type = 'text'
+                    - var _name = 'first_name'
+                    - var placeholder = 'Имя'
+                    - var visible = false
+                    include ../../components/input/input.pug
+                    - var _type = 'text'
+                    - var _name = 'second_name'
+                    - var placeholder = 'Фамилия'
+                    - var visible = false
+                    include ../../components/input/input.pug
+                    - var _type = 'password'
+                    - var _name = 'password'
+                    - var placeholder = 'Пароль'
+                    - var visible = true
+                    include ../../components/input/input.pug
+                    - var content = 'Зарегистрироваться'
+                    include ../../components/button/button.pug

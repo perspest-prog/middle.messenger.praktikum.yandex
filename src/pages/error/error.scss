@@ -4,13 +4,13 @@
     box-sizing: border-box;
 }
 
-body, html{
+body, html, main{
     font-family: "Montserrat", sans-serif;
     font-weight: normal;
     height: 100%;
     width: 100%;
 }
-body{
+main{
     display: flex;
 }
 .wrapper{

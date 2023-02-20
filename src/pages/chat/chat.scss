@@ -11,7 +11,7 @@ input {
 }
 
 input::placeholder{
-    color: #242424;
+    color: var(--bg-color-3);
 }
 
 html{
@@ -38,7 +38,7 @@ body, .wrapper{
     width: 75px !important;
     height: 75px;
     margin: 1%;
-    background-color: #242424;
+    background-color: var(--bg-color-3);
     border-radius: 50%;
 }
 

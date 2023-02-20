@@ -39,10 +39,10 @@ a{
     margin-top: 3%;
 }
 .red{
-    color: red;
+    color: var(--link-color-2);
 }
 .blue{
-    color: rgb(3, 160, 208);
+    color: var(--link-color-1);
 }
 .tools{
     margin-top: 10%;

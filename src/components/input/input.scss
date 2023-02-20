@@ -8,8 +8,8 @@
     height: 50px;
     padding: 20px 10px;
     border: 0px;
-    background-color: #D9D9D9;
-    color: #070707;
+    background-color: var(--bg-color-2);
+    color: black;
     outline: none;
     font-size: 1em;
     transition: .5s;
@@ -21,17 +21,17 @@
     padding: 15px 10px;
     pointer-events: none;
     font-size: 1em;
-    color: #000000;
+    color: black;
     transition: .5s;
 }
 .inputBox input:focus ~ span, .inputBox input:valid ~ span{
-    color: #000000;
+    color: black;
     transform: translateX(10px) translateY(-7px);
     font-size: .65em;
     padding: 0 10px;
-    background: #D9D9D9;
-    border-left: 1px solid #070707;
-    border-right: 1px solid #070707;
+    background: var(--bg-color-2);
+    border-left: 1px solid black;
+    border-right: 1px solid black;
     letter-spacing: .3em;
 }
 .inputBox input:focus, .inputBox input:valid{

@@ -2,8 +2,9 @@
   "name": "middle.messenger.praktikum.yandex",
   "version": "1.0.0",
   "description": "Messenger",
+  "private": true,
   "scripts": {
-    "install": "npm i parcel -D && npm i express",
+    "install": "npm i parcel typescript parcel-transformer-pug-precompile -D && npm i express",
     "dev": "parcel src/index.pug --open --port 3000",
     "build": "parcel build src/index.pug --public-url ./ --no-cache",
     "start": "npm run build && node ./server.js"
@@ -24,7 +25,9 @@
     "@parcel/transformer-pug": "^2.8.3",
     "@parcel/transformer-sass": "^2.8.3",
     "@parcel/transformer-webmanifest": "^2.8.3",
-    "parcel": "^2.8.3"
+    "parcel": "^2.8.3",
+    "parcel-transformer-pug-precompile": "^1.0.6",
+    "typescript": "^4.9.5"
   },
   "dependencies": {
     "express": "^4.18.2"

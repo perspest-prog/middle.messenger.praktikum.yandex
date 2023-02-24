@@ -14,7 +14,7 @@ class Block {
     private _meta: { tagName: HTMLElementTagNameMap | string, props: any};
 
     /** JSDoc
-   * @param {string} tagName
+   * @param {HTMLElementTagNameMap | string} tagName
    * @param {Object} props
    *
    * @returns {void}
@@ -102,7 +102,8 @@ class Block {
     }
 
     private _createResources(): void {
-        throw new Error("Method not implemented.");
+        const {tagName} = this._meta;
+        this._element = document.createElement(tagName)
     }
 
     public setProps(newProps: any) {
@@ -111,6 +112,10 @@ class Block {
         }
 
         Object.assign(this.props, newProps);
+    }
+
+    public getContent() {
+        return this._element;
     }
 }
 

@@ -1,5 +1,5 @@
 import Block from "../../utils/Block";
-import compileTemplate from "./button.pug";
+import compileTemplate  from "./button.pug";
 
 interface ButtonProps{
     label: string;
@@ -7,11 +7,11 @@ interface ButtonProps{
 
 class Button extends Block{
     constructor(props: ButtonProps) {
-        super('button', props);
+        super('div', props);
     }
 
     render() {
-        return  compileTemplate({label: this.props.label})
+        return compileTemplate({label: this.props.label})
     }
 }
 

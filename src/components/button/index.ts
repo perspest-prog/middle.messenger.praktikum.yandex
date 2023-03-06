@@ -1,5 +1,6 @@
 import Block from "../../utils/Block";
-import compileTemplate  from "./button.pug";
+import template  from "./button.hbs";
+import "./button.scss";
 
 interface ButtonProps{
     label: string;
@@ -7,11 +8,11 @@ interface ButtonProps{
 
 class Button extends Block{
     constructor(props: ButtonProps) {
-        super('div', props);
+        super('button', props);
     }
 
-    render() {
-        return compileTemplate({label: this.props.label})
+    protected render(): DocumentFragment {
+        return this.compile(template, this.props);
     }
 }
 

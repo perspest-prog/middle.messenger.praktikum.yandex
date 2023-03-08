@@ -39,11 +39,11 @@
 }
 .visible{
     background-image: url(../../../static/images/show.png);
-    background-size: auto 50px;
+    background-size: cover;
     position: absolute;
-    padding: 25px;
-    right: 0;
-    top: 0;
-    z-index: 3;
-    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    top: 9px;
+    right: 5px;
+    z-index: 90;
 }

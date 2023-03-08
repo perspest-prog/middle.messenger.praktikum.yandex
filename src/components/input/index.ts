@@ -1,17 +1,29 @@
-import Block from "../../utils/Block";
+import Block, { Props } from "../../utils/Block";
 import template from "./input.hbs";
 import "./input.scss";
 
-interface InputProps {
+interface InputProps extends Props {
     _type: string;
     _name: string;
     placeholder: string;
     visible: boolean;
 }
 
-class Input extends Block {
+class Input extends Block<InputProps>{
     constructor(props: InputProps) {
-        super('div', props);
+        super('div', {
+            ...props, 
+            className: ["inputBox"],
+            events: {
+                click: (event: MouseEvent) => {
+                    if (event.target === document.querySelector('.visible')) {
+                        const password = event.target?.parentElement.querySelector('input');
+                        if(password.type === 'password') password.setAttribute('type', 'text');
+                        else password.setAttribute('type', 'password');
+                    }
+                }
+            }
+        })
     }
 
     protected render(): DocumentFragment {

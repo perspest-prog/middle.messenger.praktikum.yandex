@@ -2,7 +2,7 @@ import EventBus from "./EventBus";
 import { nanoid } from 'nanoid';
 
 
-interface Props{
+export interface Props{
   className?: string[];
   id?: string;
   events?: Record<string, (event?: Event) =>void>
@@ -19,7 +19,7 @@ class Block<IProps extends Props> {
 
   public id = nanoid(6);
   protected props: IProps;
-  public children: Record<string, any>;
+  public children: Record<string, (Block<IProps> | Array<Block<IProps>>)>;
   private eventBus: () => EventBus;
   private _element: HTMLElement | null = null;
   private _meta: { tagName: string; props: any; };
@@ -55,7 +55,7 @@ class Block<IProps extends Props> {
     const children: Record<string, any> = {};
 
     Object.entries(childrenAndProps).forEach(([key, value]) => {
-      if (value instanceof Block) {
+      if (value instanceof Block || (value instanceof Array && value.every((B => B instanceof Block)))) {
         children[key] = value;
       } else {
         props[key] = value;
@@ -104,7 +104,10 @@ class Block<IProps extends Props> {
   public dispatchComponentDidMount() {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
 
-    Object.values(this.children).forEach(child => child.dispatchComponentDidMount());
+    Object.values(this.children).forEach((child) => {
+      if (child instanceof Array) child.forEach(B => B.dispatchComponentDidMount());
+      else child.dispatchComponentDidMount();
+    });
   }
 
   private _componentDidUpdate(oldProps: any, newProps: any) {
@@ -141,11 +144,15 @@ class Block<IProps extends Props> {
     this._addEvents();
   }
 
-  protected compile(template: (context: any) => string, context: any) {
+  protected compile(template: (context: any) => string, context: any): DocumentFragment {
     const contextAndStubs = { ...context };
 
     Object.entries(this.children).forEach(([name, component]) => {
-      contextAndStubs[name] = `<div data-id="${component.id}"></div>`;
+      if (component instanceof Array) {
+        contextAndStubs[name] = component.map((B => `<div data-id="${B.id}"></div>`))
+      } else {
+        contextAndStubs[name] = `<div data-id="${component.id}"></div>`;
+      }
     });
 
     const html = template(contextAndStubs);
@@ -155,16 +162,29 @@ class Block<IProps extends Props> {
     temp.innerHTML = html;
 
     Object.entries(this.children).forEach(([_, component]) => {
-      const stub = temp.content.querySelector(`[data-id="${component.id}"]`);
+      if (component instanceof Array) {
+        component.forEach((B) => {
+          const stub = temp.content.querySelector(`[data-id="${B.id}"]`);
 
-      if (!stub) {
-        return;
+          if (!stub) {
+            return;
+          }
+
+          B.getContent()?.append(...Array.from(stub.childNodes));
+
+          stub.replaceWith(B.getContent()!);
+        })
+      } else {
+        const stub = temp.content.querySelector(`[data-id="${component.id}"]`);
+
+        if (!stub) {
+          return;
+        }
+
+        component.getContent()?.append(...Array.from(stub.childNodes));
+
+        stub.replaceWith(component.getContent()!);
       }
-
-      component.getContent()?.append(...Array.from(stub.childNodes));
-
-      stub.replaceWith(component.getContent()!);
-
     });
 
     return temp.content;

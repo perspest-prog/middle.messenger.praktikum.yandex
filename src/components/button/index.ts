@@ -1,14 +1,14 @@
-import Block from "../../utils/Block";
+import Block, { Props } from "../../utils/Block";
 import template  from "./button.hbs";
 import "./button.scss";
 
-interface ButtonProps{
+interface ButtonProps extends Props{
     label: string;
 }
 
-class Button extends Block{
+class Button extends Block<ButtonProps>{
     constructor(props: ButtonProps) {
-        super('button', props);
+        super('button', {...props, className: ["button"]});
     }
 
     protected render(): DocumentFragment {

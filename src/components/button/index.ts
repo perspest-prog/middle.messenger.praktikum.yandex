@@ -11,6 +11,10 @@ class Button extends Block<ButtonProps>{
         super('button', {...props, className: ["button"]});
     }
 
+    protected init(): void {
+        this.element!.type = "submit";
+    }
+
     protected render(): DocumentFragment {
         return this.compile(template, this.props);
     }

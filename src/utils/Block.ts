@@ -30,7 +30,7 @@ class Block<IProps extends Props> {
    *
    * @returns {void}
    */
-  constructor(tagName = "div", propsWithChildren: any = {}) {
+  constructor(tagName: keyof HTMLElementTagNameMap = "div", propsWithChildren: any = {}) {
     const eventBus = new EventBus();
 
     const { props, children } = this._getChildrenAndProps(propsWithChildren);
@@ -41,7 +41,7 @@ class Block<IProps extends Props> {
     };
 
     this.children = children;
-    this.props = this._makePropsProxy(props);
+    this.props = this._makeItProxy(props);
 
     this.eventBus = () => eventBus;
 
@@ -198,7 +198,7 @@ class Block<IProps extends Props> {
     return this.element;
   }
 
-  _makePropsProxy(props: any) {
+  _makeItProxy(props: any) {
     // Ещё один способ передачи this, но он больше не применяется с приходом ES6+
     const self = this;
 

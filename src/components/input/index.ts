@@ -3,15 +3,15 @@ import template from "./input.hbs";
 import "./input.scss";
 
 interface InputProps extends Props {
-    _type: string;
-    _name: string;
+    type: string;
+    name: string;
     placeholder: string;
     visible: boolean;
 }
 
 class Input extends Block<InputProps>{
     constructor(props: InputProps) {
-        super('div', {
+        super("div", {
             ...props, 
             className: ["inputBox"],
             events: {

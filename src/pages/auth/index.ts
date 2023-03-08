@@ -18,8 +18,8 @@ class AuthPage extends Block<AuthProps>{
                     label: "Войти"
                 }),
                 inputs: [
-                    new Input({_type: "text", _name: "login", placeholder: "Логин", visible: false}),
-                    new Input({_type: "password", _name: "password", placeholder: "Пароль", visible: true})
+                    new Input({type: "text", name: "login", placeholder: "Логин", visible: false}),
+                    new Input({type: "password", name: "password", placeholder: "Пароль", visible: true})
                 ],
                 link: {
                     href: "#",

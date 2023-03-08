@@ -1,0 +1,36 @@
+{
+  "name": "middle.messenger.praktikum.yandex",
+  "version": "1.0.0",
+  "description": "Messenger",
+  "scripts": {
+    "install": "npm i parcel -D && npm i express",
+    "dev": "parcel src/index.pug --open --port 3000",
+    "build": "parcel build src/index.pug --public-url ./ --no-cache",
+    "start": "npm run build && node ./server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/perspest-prog/middle.messenger.praktikum.yandex.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/perspest-prog/middle.messenger.praktikum.yandex/issues"
+  },
+  "homepage": "https://github.com/perspest-prog/middle.messenger.praktikum.yandex#readme",
+  "devDependencies": {
+    "@parcel/packager-raw-url": "^2.8.3",
+    "@parcel/transformer-pug": "^2.8.3",
+    "@parcel/transformer-sass": "^2.8.3",
+    "@parcel/transformer-webmanifest": "^2.8.3",
+    "parcel": "^2.8.3"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "engines": {
+    "node": "^16.0.0",
+    "npm": "^8.15.0"
+  }
+}

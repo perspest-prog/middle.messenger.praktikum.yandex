@@ -1,0 +1,61 @@
+.message{
+  background-color: var(--bg-color-2);
+  border-left: 3px solid var(--bg-color-3);
+  position: relative;
+  &__tools{
+    position: absolute;
+    bottom: 3px;
+    width: 100%;
+    height: 10vh;
+    border-top: 3px solid var(--bg-color-3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    & input{
+      background-color: var(--msg-color-1);
+      color: var(--bg-color-3);
+      width: 80%;
+      height: 30px;
+      border-radius: 5px;
+    }
+  }
+  &__container{
+    height: 90vh;
+  }
+  &__item{
+    display: flex;
+    width: 100%;
+    &[data-author="tail-out"]{
+      justify-content: flex-end;
+      & svg{
+        fill: var(--msg-color-2);
+        right: -15px;
+      }
+      & > .message__wrapper{
+        background-color: var(--msg-color-2);
+        border-bottom-right-radius: 0;
+        margin-right: 25px;
+      }
+    }
+    &[data-author="tail-in"] > .message__wrapper{
+      background-color: var(--msg-color-1);
+      border-bottom-left-radius: 0;
+      margin-left: 25px;
+    }
+    &[data-author="tail-in"] svg{
+      fill: var(--msg-color-1);
+      left: -15px;
+    }
+  }
+  &__wrapper{
+    position: relative;
+    width: 450px;
+    border-radius: 20px;
+    padding: 10px;
+    margin: 20px 0;
+    & svg{
+      position: absolute;
+      bottom: 0;
+    }
+  }
+}

@@ -1,0 +1,48 @@
+doctype html
+html(lang="ru")
+    head
+        - var title = 'Регистрация'
+        include ../../components/head/head.pug
+        link(rel="stylesheet", href="../../components/button/button.scss")
+        link(rel="stylesheet", href="../../components/input/input.scss")
+        link(rel="stylesheet", href="../../components/form/form.scss")
+        link(rel="stylesheet", href="./reg.scss")
+        link(rel="stylesheet", href="../../index.scss")
+        script(src='../../utils/visible.js' defer='')
+    body
+        main
+            div(class="form")
+                h1(class="form__logo") Регистрация
+                form(action="#" class="form__main")
+                    - var _type = 'tel'
+                    - var _name = 'phone'
+                    - var placeholder = 'Номер телефона'
+                    - var visible = false
+                    include ../../components/input/input.pug
+                    - var _type = 'email'
+                    - var _name = 'email'
+                    - var placeholder = 'Почта'
+                    - var visible = false
+                    include ../../components/input/input.pug
+                    - var _type = 'text'
+                    - var _name = 'login'
+                    - var placeholder = 'Логин'
+                    - var visible = false
+                    include ../../components/input/input.pug
+                    - var _type = 'text'
+                    - var _name = 'first_name'
+                    - var placeholder = 'Имя'
+                    - var visible = false
+                    include ../../components/input/input.pug
+                    - var _type = 'text'
+                    - var _name = 'second_name'
+                    - var placeholder = 'Фамилия'
+                    - var visible = false
+                    include ../../components/input/input.pug
+                    - var _type = 'password'
+                    - var _name = 'password'
+                    - var placeholder = 'Пароль'
+                    - var visible = true
+                    include ../../components/input/input.pug
+                    - var content = 'Зарегистрироваться'
+                    include ../../components/button/button.pug

@@ -1,0 +1,15 @@
+doctype html
+html(lang="ru")
+    head
+        - var title = 'Мессенджер'
+        include ../../components/head/head.pug
+        link(rel="stylesheet", href="./chat.scss")
+        link(rel="stylesheet", href="../../../static/css/simplebar.css")
+        link(rel="stylesheet", href="../../components/chat/chat.scss")
+        link(rel="stylesheet", href="../../components/message/message.scss")
+        link(rel="stylesheet", href="../../index.scss")
+        script(src="../../../static/js/simplebar.min.js" defer="")
+    body
+        div(class="wrapper")
+            include ../../components/chat/chat.pug
+            include ../../components/message/message.pug

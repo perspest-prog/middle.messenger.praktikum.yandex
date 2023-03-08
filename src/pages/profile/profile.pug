@@ -1,0 +1,21 @@
+doctype html
+html(lang="ru")
+    head
+        - var title = 'Профиль'
+        include ../../components/head/head.pug
+        link(rel="stylesheet", href="./profile.scss")
+        link(rel="stylesheet", href="../../index.scss")
+    body
+        main
+            div(class="wrapper")
+                div(class="main")
+                    div(class="main__avatar")
+                    h1(class="main__name") Иван
+                div(class="information")
+                    each value, index in [['Статус', 'Привет!'], ['Статус', 'Привет!'], ['Статус', 'Привет!'], ['Статус', 'Привет!']]
+                        - var l_content = value[0]
+                        - var r_content = value[1]
+                        include ../../components/information/information.pug
+                div(class="tools")
+                    a(href="" class="item blue") Изменить
+                    a(href="" class="item red") Выйти

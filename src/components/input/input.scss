@@ -1,0 +1,49 @@
+.inputBox{
+    position: relative;
+    width: 250px;
+}
+.inputBox input{
+    font-family: "Montserrat", sans-serif;
+    width: 100%;
+    height: 50px;
+    padding: 20px 10px;
+    border: 0px;
+    background-color: var(--bg-color-2);
+    color: black;
+    outline: none;
+    font-size: 1em;
+    transition: .5s;
+
+}
+.inputBox span{
+    position: absolute;
+    left: 0;
+    padding: 15px 10px;
+    pointer-events: none;
+    font-size: 1em;
+    color: black;
+    transition: .5s;
+}
+.inputBox input:focus ~ span, .inputBox input:valid ~ span{
+    color: black;
+    transform: translateX(10px) translateY(-7px);
+    font-size: .65em;
+    padding: 0 10px;
+    background: var(--bg-color-2);
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    letter-spacing: .3em;
+}
+.inputBox input:focus, .inputBox input:valid{
+    border: 0px;
+}
+.visible{
+    background-image: url(../../../static/images/show.png);
+    background-size: auto 50px;
+    position: absolute;
+    padding: 25px;
+    right: 0;
+    top: 0;
+    z-index: 3;
+    cursor: pointer;
+}

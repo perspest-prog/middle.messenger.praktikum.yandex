@@ -30,6 +30,7 @@
       & svg{
         fill: var(--msg-color-2);
         right: -15px;
+        transform: scale(-1, 1);
       }
       & > .message__wrapper{
         background-color: var(--msg-color-2);

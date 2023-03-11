@@ -4,6 +4,7 @@ import "./button.scss";
 
 interface ButtonProps extends Props{
     label: string;
+    type?: string;
 }
 
 class Button extends Block<ButtonProps>{
@@ -12,7 +13,10 @@ class Button extends Block<ButtonProps>{
     }
 
     protected init(): void {
-        this.element!.type = "submit";
+        if(this.props.type)
+            this.element!.type = this.props.type;
+        else
+            this.element!.type = "submit"
     }
 
     protected render(): DocumentFragment {

@@ -1,0 +1,11 @@
+.inputBox_big{
+    height: 40px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    & > input {
+        height: 30px;
+        width: 200px;
+    }
+}

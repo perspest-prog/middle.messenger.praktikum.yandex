@@ -15,3 +15,16 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+ul, li {
+    list-style: none;
+}
+html {
+    font-family: 'Montserrat', sans-serif;
+}
+input::placeholder{
+    font-family: 'Montserrat', sans-serif;
+}
+input{
+    font-family: 'Montserrat', sans-serif;
+}

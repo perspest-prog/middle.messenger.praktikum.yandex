@@ -4,8 +4,16 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
     & > input {
         height: 30px;
         width: 200px;
     }
+}
+.error {
+    position: absolute;
+    top: 40px;
+    right: 0;
+    color: red;
+    font-size: small;
 }

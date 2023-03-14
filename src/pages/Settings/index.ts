@@ -15,9 +15,12 @@ class SettingsPage extends Block<SettingsPageProps>{
             className: ["settings__wrapper"],
             form: new Form({
                 inputs: [
-                    new Input({label: "Имя:", type: "text"}),
-                    new Input({label: "Имя:", type: "text"}),
-                    new Input({label: "Имя:", type: "text"})
+                    new Input({type: "tel", name: "phone", label: "Номер телефона"}),
+                    new Input({type: "text", name: "email", label: "Почта"}),
+                    new Input({type: "text", name: "login", label: "Логин"}),
+                    new Input({type: "text", name: "first_name", label: "Имя"}),
+                    new Input({type: "text", name: "second_name", label: "Фамилия"}),
+                    new Input({type: "password", name: "password", label: "Пароль"})
                 ],
                 button1: new Button({label: "Изменить", type: "button"}),
                 button2: new Button({label: "Готово"})

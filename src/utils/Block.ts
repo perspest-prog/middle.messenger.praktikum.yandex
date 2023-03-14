@@ -19,7 +19,7 @@ class Block<IProps extends Props> {
 
   public id = nanoid(6);
   protected props: IProps;
-  public children: Record<string, (Block<IProps> | Array<Block<IProps>>)>;
+  public children: Record<string, any>;
   private eventBus: () => EventBus;
   private _element: HTMLElement | null = null;
   private _meta: { tagName: string; props: any; };

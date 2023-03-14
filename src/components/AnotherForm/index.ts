@@ -15,8 +15,27 @@ class Form extends Block<FormProps>{
         super("form", {...props, className: ["sform"]});
     }
 
+    protected init(): void {
+        this.children.button1.props.events = {
+            ...this.children.button1.props.events,
+            click: () => this.onClick()
+        }
+    }
+
     protected render(): DocumentFragment {
         return this.compile(template, this.props)
+    }
+
+    private onClick(event?: Event): void {
+        this.children.button1.setProps({
+            label: this.children.button1.props.label === "Изменить" ? "Отменить" : "Изменить"
+        });
+        this.children.inputs.forEach((input: Input) => input.element!.children[1].toggleAttribute("disabled"));
+        this.children.inputs.forEach((input: Input) => input.element!.children[2].innerText = "");
+    }
+
+    private onSubmit(event?: Event): void {
+        
     }
 }
 

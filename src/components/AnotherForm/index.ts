@@ -16,9 +16,14 @@ class Form extends Block<FormProps>{
     }
 
     protected init(): void {
+        this.children.button2.element.toggleAttribute("disabled");
         this.children.button1.props.events = {
             ...this.children.button1.props.events,
             click: () => this.onClick()
+        }
+        this.children.button2.props.events = {
+            ...this.children.button1.props.events,
+            click: (e: Event) => this.onSubmit(e)
         }
     }
 
@@ -30,12 +35,20 @@ class Form extends Block<FormProps>{
         this.children.button1.setProps({
             label: this.children.button1.props.label === "Изменить" ? "Отменить" : "Изменить"
         });
+        this.children.button2.element.toggleAttribute("disabled");
         this.children.inputs.forEach((input: Input) => input.element!.children[1].toggleAttribute("disabled"));
         this.children.inputs.forEach((input: Input) => input.element!.children[2].innerText = "");
     }
 
     private onSubmit(event?: Event): void {
-        
+        event?.preventDefault();
+        this.children.inputs.forEach((input: Input) => input.checkValid());
+
+        const data = this.children.inputs.reduce((acc: Object, input: Input) => {
+            return {...acc, [input.getName()]: input.getValue()}
+        }, {})
+
+        console.log(data)
     }
 }
 

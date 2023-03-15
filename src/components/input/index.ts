@@ -49,7 +49,7 @@ class Input extends Block<InputProps>{
         }
     }
 
-    public getName(): "email" | "phone" | "password" {
+    public getName(): "email" | "phone" | "password" | "first_name" | "second_name" | "login" {
         return this.element!.childNodes[0].name;
     }
 
@@ -63,12 +63,26 @@ class Input extends Block<InputProps>{
         if (!this.getValue()) {
             err.innerText = "Заполните это поле";
         } else if (!Input.REGEXP[this.getName()].test(this.getValue())) {
-            if (this.getName() == "email")
-                err.innerText = "Введите корректную почту";
-            if (this.getName() == "phone")
-                err.innerText = "Введите корректный номер телефона";
-            if (this.getName() == "password")
-                err.innerText = "Длина пароля должна быть более 6 символов. Пароль должен содержать цифры и специальные символы";
+            switch (this.getName()) {
+                case "email":
+                    err.innerText = "Введите корректную почту";
+                    break;
+                case "phone":
+                    err.innerText = "Введите корректный номер телефона";
+                    break;
+                case "password":
+                    err.innerText = "Длина пароля должна быть более 6 символов. Пароль должен содержать цифры и специальные символы";
+                    break;
+                case "first_name":
+                    err.innerText = "Имя может содержать только русские и английские буквы";
+                    break;
+                case "second_name":
+                    err.innerText = "Фамилия может содержать только русские и английские буквы";
+                    break;
+                case "login":
+                    err.innerText = "Логин должен быть от 4 до 16 символов";
+                    break;
+            }
         } else {
             err.innerText = '';
         }

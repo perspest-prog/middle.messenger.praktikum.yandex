@@ -26,7 +26,7 @@ window.addEventListener('DOMContentLoaded', () => {
     //         new Message({type: "tail-out", content: "shdeawicei scjs usachusa sdchsd heshsachs"}),
     //     ]
     // });
-    const page = new RegPage()
+    const page = new SettingsPage()
 
     root.appendChild(page.getContent()!);
     page.dispatchComponentDidMount();

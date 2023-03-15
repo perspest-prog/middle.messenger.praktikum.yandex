@@ -19,8 +19,26 @@ class Form extends Block<FormProps>{
         super('div', {...props, className: ["form"]});
     }
 
+    protected init(): void {
+        this.children.button.props.events = {
+            ...this.children.button.props.events,
+            click: (e: Event) => this.onSubmit(e)
+        }
+    }
+
     protected render(): DocumentFragment {
         return this.compile(template, this.props);
+    }
+
+    private onSubmit(event?: Event): void {
+        event?.preventDefault();
+        this.children.inputs.forEach((input: Input) => input.checkValid());
+
+        const data = this.children.inputs.reduce((acc: Object, input: Input) => {
+            return {...acc, [input.getName()]: input.getValue()}
+        }, {})
+
+        console.log(data)
     }
 }
 

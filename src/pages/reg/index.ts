@@ -17,12 +17,7 @@ class RegPage extends Block<RegProps>{
     protected init(): void {
         this.children.form = new Form({
             title: "Регистрация",
-            button: new Button({
-                label: "Зарегестрироваться",
-                events: {
-                    click: (e) => this.onSubmit(e)
-                }
-            }),
+            button: new Button({label: "Зарегестрироваться"}),
             inputs: [
                 new Input({type: "tel", name: "phone", placeholder: "Номер телефона", visible: false}),
                 new Input({type: "text", name: "email", placeholder: "Почта", visible: false}),
@@ -36,12 +31,6 @@ class RegPage extends Block<RegProps>{
 
     protected render(): DocumentFragment {
         return this.compile(template, this.props);
-    }
-
-    private onSubmit(event?: Event): void {
-        event?.preventDefault();
-
-        this.children.form.children.inputs.forEach((input: Input) => input.checkValid());
     }
     
 }

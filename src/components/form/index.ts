@@ -23,7 +23,7 @@ class Form extends Block<FormProps>{
         this.children.button.props.events = {
             ...this.children.button.props.events,
             click: (e: Event) => this.onSubmit(e)
-        }
+        };
     }
 
     protected render(): DocumentFragment {
@@ -34,11 +34,11 @@ class Form extends Block<FormProps>{
         event?.preventDefault();
         this.children.inputs.forEach((input: Input) => input.checkValid());
 
-        const data = this.children.inputs.reduce((acc: Object, input: Input) => {
-            return {...acc, [input.getName()]: input.getValue()}
-        }, {})
+        const data = this.children.inputs.reduce((acc: object, input: Input) => {
+            return {...acc, [input.getName()]: input.getValue()};
+        }, {});
 
-        console.log(data)
+        console.log(data);
     }
 }
 

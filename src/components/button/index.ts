@@ -16,7 +16,7 @@ class Button extends Block<ButtonProps>{
         if(this.props.type)
             this.element!.type = this.props.type;
         else
-            this.element!.type = "submit"
+            this.element!.type = "submit";
     }
 
     protected render(): DocumentFragment {

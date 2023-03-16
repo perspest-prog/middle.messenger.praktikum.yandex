@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 class EventBus {
-    private readonly listeners: Record<string, Array<(...args: any[]) => void>> = {}
+    private readonly listeners: Record<string, Array<(...args: any[]) => void>> = {};
 
     public on(event: string, callback: (...args: any[]) => void) {
         if (!this.listeners[event]) {
@@ -25,7 +26,7 @@ class EventBus {
         }
 
         this.listeners[event].forEach(listener => {
-            listener(...args)
+            listener(...args);
         });
     }
 }

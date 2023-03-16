@@ -17,24 +17,24 @@ class Input extends Block<InputProps>{
         login: /^[a-zA-Z0-9!@#$%^&*]{4,16}$/,
         first_name: /^[a-zA-Zа-яА-Я]{0,16}$/,
         second_name: /^[a-zA-Zа-яА-Я]{0,16}$/
-    }
+    };
 
 
     constructor(props: InputProps) {
         super("div", {
             ...props, 
             className: ["inputBox"]
-        })
+        });
     }
 
     protected init(): void {
         this.props.events = {
             click: (e) => this.setVisible(e!)
-        }
+        };
     }
 
     componentDidMount(): void {
-        this.element!.children[0].addEventListener("blur", this.checkValid.bind(this))
+        this.element!.children[0].addEventListener("blur", this.checkValid.bind(this));
     }
 
     protected render(): DocumentFragment {

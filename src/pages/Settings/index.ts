@@ -25,7 +25,7 @@ class SettingsPage extends Block<SettingsPageProps>{
                 button1: new Button({label: "Изменить", type: "button"}),
                 button2: new Button({label: "Готово"})
             })
-        })
+        });
     }
 
     protected render(): DocumentFragment {

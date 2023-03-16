@@ -20,18 +20,18 @@ class Form extends Block<FormProps>{
         this.children.button1.props.events = {
             ...this.children.button1.props.events,
             click: () => this.onClick()
-        }
+        };
         this.children.button2.props.events = {
             ...this.children.button1.props.events,
             click: (e: Event) => this.onSubmit(e)
-        }
+        };
     }
 
     protected render(): DocumentFragment {
-        return this.compile(template, this.props)
+        return this.compile(template, this.props);
     }
 
-    private onClick(event?: Event): void {
+    private onClick(): void {
         this.children.button1.setProps({
             label: this.children.button1.props.label === "Изменить" ? "Отменить" : "Изменить"
         });
@@ -44,11 +44,11 @@ class Form extends Block<FormProps>{
         event?.preventDefault();
         this.children.inputs.forEach((input: Input) => input.checkValid());
 
-        const data = this.children.inputs.reduce((acc: Object, input: Input) => {
-            return {...acc, [input.getName()]: input.getValue()}
-        }, {})
+        const data = this.children.inputs.reduce((acc: object, input: Input) => {
+            return {...acc, [input.getName()]: input.getValue()};
+        }, {});
 
-        console.log(data)
+        console.log(data);
     }
 }
 

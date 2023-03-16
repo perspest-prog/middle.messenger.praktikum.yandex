@@ -26,7 +26,7 @@ class RegPage extends Block<RegProps>{
                 new Input({type: "text", name: "second_name", placeholder: "Фамилия", visible: false}),
                 new Input({type: "password", name: "password", placeholder: "Пароль", visible: true})
             ]
-        })
+        });
     }
 
     protected render(): DocumentFragment {

@@ -11,7 +11,7 @@ interface ChatPageProps extends Props{
 
 class ChatPage extends Block<ChatPageProps>{
     constructor(props: ChatPageProps){
-        super("div", {...props, className: ["chat__wrapper"]})
+        super("div", {...props, className: ["chat__wrapper"]});
     }
 
     protected render(): DocumentFragment {

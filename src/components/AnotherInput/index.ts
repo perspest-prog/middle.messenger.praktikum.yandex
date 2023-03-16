@@ -17,7 +17,7 @@ class Input extends Block<InputProps>{
         login: /^[a-zA-Z0-9!@#$%^&*]{4,16}$/,
         first_name: /^[a-zA-Zа-яА-Я]{0,16}$/,
         second_name: /^[a-zA-Zа-яА-Я]{0,16}$/
-    }
+    };
 
     constructor(props: InputProps){
         super("div", {...props, className: ["inputBox_big"]});
@@ -28,7 +28,7 @@ class Input extends Block<InputProps>{
     }
 
     componentDidMount(): void {
-        this.element!.children[1].addEventListener("blur", this.checkValid.bind(this))
+        this.element!.children[1].addEventListener("blur", this.checkValid.bind(this));
     }
 
     public getName(): "email" | "phone" | "password" | "login" | "first_name" | "second_name" {

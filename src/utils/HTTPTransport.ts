@@ -4,13 +4,13 @@ enum METHODS {
     PUT = 'PUT',
     PATCH = 'PATCH',
     DELETE = 'DELETE',
-};
+}
 
 type Options = {
     method: string;
     timeout?: number;
-    data?: any
-}
+    data?: object
+};
 
 type OptionsWithoutMethod = Omit<Options, 'method'>;
 
@@ -19,19 +19,19 @@ type OptionsWithoutMethod = Omit<Options, 'method'>;
 * На входе: объект. Пример: {a: 1, b: 2, c: {d: 123}, k: [1, 2, 3]}
 * На выходе: строка. Пример: ?a=1&b=2&c=[object Object]&k=1,2,3
 */
-function queryStringify(data: Object): string {
+function queryStringify(data?: object): string {
     if (!data) {
         return '';
     }
     return Object.entries(data).reduce((acc, [key, val], index) => {
-        return index + 1 !== Object.entries(data).length ? acc + `${key}=${val}&` : acc + `${key}=${val}`
-    }, Object.entries(data).length > 0 ? '?' : '')
+        return index + 1 !== Object.entries(data).length ? acc + `${key}=${val}&` : acc + `${key}=${val}`;
+    }, Object.entries(data).length > 0 ? '?' : '');
 // Можно делать трансформацию GET-параметров в отдельной функции
 }
 
 class HTTPTransport {
     public get(url: string, options: OptionsWithoutMethod = {}) {
-        const str = queryStringify(options?.data)
+        const str = queryStringify(options?.data);
         return this.request(url + str, {...options, method: METHODS.GET}, options.timeout);
     }
 
@@ -55,12 +55,12 @@ class HTTPTransport {
         const {method, data} = options;
 
         return new Promise((resolve, reject) => {
-            const xhr = new XMLHttpRequest()
+            const xhr = new XMLHttpRequest();
             xhr.open(method, url);
 
             xhr.onload = function() {
                 resolve(xhr);
-            }
+            };
 
             xhr.timeout = timeout;
             xhr.onabort = reject;
@@ -72,8 +72,8 @@ class HTTPTransport {
             } else {
                 xhr.send(data);
             }
-        })
-    };
+        });
+    }
 }
 
 export default HTTPTransport;

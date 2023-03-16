@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import AuthPage from "./pages/Auth";
 import RegPage from "./pages/Reg";
 import ErrorPage from "./pages/Error";
@@ -26,7 +27,7 @@ window.addEventListener('DOMContentLoaded', () => {
     //         new Message({type: "tail-out", content: "shdeawicei scjs usachusa sdchsd heshsachs"}),
     //     ]
     // });
-    const page = new RegPage()
+    const page = new RegPage();
 
     root.appendChild(page.getContent()!);
     page.dispatchComponentDidMount();

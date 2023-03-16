@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import EventBus from "./EventBus";
 import { nanoid } from 'nanoid';
 
@@ -19,10 +20,11 @@ class Block<IProps extends Props> {
 
   public id = nanoid(6);
   protected props: IProps;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public children: Record<string, any>;
   private eventBus: () => EventBus;
   private _element: HTMLElement | null = null;
-  private _meta: { tagName: string; props: any; };
+  private _meta: { tagName: string; props: IProps; };
 
   /** JSDoc
    * @param {string} tagName
@@ -30,7 +32,7 @@ class Block<IProps extends Props> {
    *
    * @returns {void}
    */
-  constructor(tagName: keyof HTMLElementTagNameMap = "div", propsWithChildren: any = {}) {
+  constructor(tagName: keyof HTMLElementTagNameMap = "div", propsWithChildren: object = {}) {
     const eventBus = new EventBus();
 
     const { props, children } = this._getChildrenAndProps(propsWithChildren);
@@ -50,7 +52,7 @@ class Block<IProps extends Props> {
     eventBus.emit(Block.EVENTS.INIT);
   }
 
-  _getChildrenAndProps(childrenAndProps: any) {
+  _getChildrenAndProps(childrenAndProps: object) {
     const props: Record<string, any> = {};
     const children: Record<string, any> = {};
 
@@ -116,6 +118,7 @@ class Block<IProps extends Props> {
     }
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   protected componentDidUpdate(oldProps: any, newProps: any) {
     return true;
   }
@@ -149,7 +152,7 @@ class Block<IProps extends Props> {
 
     Object.entries(this.children).forEach(([name, component]) => {
       if (component instanceof Array) {
-        contextAndStubs[name] = component.map((B => `<div data-id="${B.id}"></div>`))
+        contextAndStubs[name] = component.map((B => `<div data-id="${B.id}"></div>`));
       } else {
         contextAndStubs[name] = `<div data-id="${component.id}"></div>`;
       }
@@ -161,7 +164,7 @@ class Block<IProps extends Props> {
 
     temp.innerHTML = html;
 
-    Object.entries(this.children).forEach(([_, component]) => {
+    Object.entries(this.children).forEach(([, component]) => {
       if (component instanceof Array) {
         component.forEach((B) => {
           const stub = temp.content.querySelector(`[data-id="${B.id}"]`);
@@ -173,7 +176,7 @@ class Block<IProps extends Props> {
           B.getContent()?.append(...Array.from(stub.childNodes));
 
           stub.replaceWith(B.getContent()!);
-        })
+        });
       } else {
         const stub = temp.content.querySelector(`[data-id="${component.id}"]`);
 
@@ -200,6 +203,7 @@ class Block<IProps extends Props> {
 
   _makeItProxy(props: any) {
     // Ещё один способ передачи this, но он больше не применяется с приходом ES6+
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
     const self = this;
 
     return new Proxy(props, {
@@ -208,7 +212,7 @@ class Block<IProps extends Props> {
         return typeof value === "function" ? value.bind(target) : value;
       },
       set(target, prop, value) {
-        const oldTarget = { ...target }
+        const oldTarget = { ...target };
 
         target[prop] = value;
 

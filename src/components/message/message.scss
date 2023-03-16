@@ -1,62 +1,84 @@
 .message{
-  background-color: var(--bg-color-2);
-  border-left: 3px solid var(--bg-color-3);
-  position: relative;
-  &__tools{
-    position: absolute;
-    bottom: 3px;
-    width: 100%;
-    height: 10vh;
-    border-top: 3px solid var(--bg-color-3);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    & input{
-      background-color: var(--msg-color-1);
-      color: var(--bg-color-3);
-      width: 80%;
-      height: 30px;
-      border-radius: 5px;
-    }
-  }
-  &__container{
-    height: 90vh;
-  }
-  &__item{
-    display: flex;
-    width: 100%;
-    &[data-author="tail-out"]{
-      justify-content: flex-end;
-      & svg{
-        fill: var(--msg-color-2);
-        right: -15px;
-        transform: scale(-1, 1);
-      }
-      & > .message__wrapper{
-        background-color: var(--msg-color-2);
-        border-bottom-right-radius: 0;
-        margin-right: 25px;
-      }
-    }
-    &[data-author="tail-in"] > .message__wrapper{
-      background-color: var(--msg-color-1);
-      border-bottom-left-radius: 0;
-      margin-left: 25px;
-    }
-    &[data-author="tail-in"] svg{
-      fill: var(--msg-color-1);
-      left: -15px;
-    }
-  }
-  &__wrapper{
-    position: relative;
-    width: 450px;
-    border-radius: 20px;
-    padding: 10px;
-    margin: 20px 0;
-    & svg{
-      position: absolute;
-      bottom: 0;
-    }
-  }
+	position: relative;
+
+	border-left: 3px solid var(--bg-color-3);
+	background-color: var(--bg-color-2);
+
+	&__wrapper{
+		position: relative;
+
+		width: 450px;
+		margin: 20px 0;
+		padding: 10px;
+
+		border-radius: 20px;
+
+		& svg{
+			position: absolute;
+			bottom: 0;
+		}
+	}
+	
+	&__tools{
+		position: absolute;
+		bottom: 3px;
+
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		width: 100%;
+		height: 10vh;
+
+		border-top: 3px solid var(--bg-color-3);
+
+		& input{
+			width: 80%;
+			height: 30px;
+
+			color: var(--bg-color-3);
+			border-radius: 5px;
+			background-color: var(--msg-color-1);
+		}
+	}
+
+	&__container{
+		height: 90vh;
+	}
+
+	&__item{
+		display: flex;
+
+		width: 100%;
+
+		&[data-author="tail-out"]{
+			justify-content: flex-end;
+
+			& svg{
+				right: -15px;
+
+				transform: scale(-1, 1);
+				fill: var(--msg-color-2);
+			}
+
+			& > .message__wrapper{
+				margin-right: 25px;
+
+				border-bottom-right-radius: 0;
+				background-color: var(--msg-color-2);
+			}
+		}
+
+		&[data-author="tail-in"] > .message__wrapper{
+			margin-left: 25px;
+
+			border-bottom-left-radius: 0;
+			background-color: var(--msg-color-1);
+		}
+
+		&[data-author="tail-in"] svg{
+			left: -15px;
+			fill: var(--msg-color-1);
+		}
+	}
 }

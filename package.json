@@ -4,7 +4,7 @@
   "description": "Messenger",
   "private": true,
   "scripts": {
-    "install": "npm i parcel typescript parcel-transformer-pug-precompile -D && npm i express",
+    "install": "npm i",
     "dev": "parcel src/index.html --open --port 3000",
     "build": "parcel build src/index.pug --public-url ./ --no-cache",
     "start": "npm run build && node ./server.js",

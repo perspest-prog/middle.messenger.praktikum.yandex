@@ -21,3 +21,7 @@ https://www.figma.com/file/0Js87e4EMN5X8cWBwXJres/%D0%9C%D0%B5%D1%81%D1%81%D0%B5
 - `/chat` - чат
 - `/error` - ошибка
 - `/settings` - профиль и его редактирование
+
+### **Пулл реквесты**
+- Спринт 1: https://github.com/perspest-prog/middle.messenger.praktikum.yandex/pull/1
+- Спринт 2: https://github.com/perspest-prog/middle.messenger.praktikum.yandex/pull/2

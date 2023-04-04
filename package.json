@@ -4,7 +4,7 @@
   "description": "Messenger",
   "private": true,
   "scripts": {
-    "install": "npm i",
+    "install": "npm i express && npm i -D parcel @anikin/parcel-transformer-handlebars-precompile parcel-transformer-pug-precompile typescript nanoid && npm i -D eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin stylelint stylelint-config-standard stylelint-order stylelint-order-config-standard",
     "dev": "parcel src/index.html --open --port 3000",
     "build": "parcel build src/index.pug --public-url ./ --no-cache",
     "start": "npm run build && node ./server.js",
@@ -43,7 +43,7 @@
     "express": "^4.18.2"
   },
   "engines": {
-    "node": "^16.0.0",
-    "npm": "^8.15.0"
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
   }
 }

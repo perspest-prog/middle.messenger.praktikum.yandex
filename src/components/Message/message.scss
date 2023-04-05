@@ -1,10 +1,10 @@
-.message{
+.message {
 	position: relative;
 
 	border-left: 3px solid var(--bg-color-3);
 	background-color: var(--bg-color-2);
 
-	&__wrapper{
+	&__wrapper {
 		position: relative;
 
 		width: 450px;
@@ -13,13 +13,13 @@
 
 		border-radius: 20px;
 
-		& svg{
+		& svg {
 			position: absolute;
 			bottom: 0;
 		}
 	}
-	
-	&__tools{
+
+	&__tools {
 		position: absolute;
 		bottom: 3px;
 
@@ -32,7 +32,7 @@
 
 		border-top: 3px solid var(--bg-color-3);
 
-		& input{
+		& input {
 			width: 80%;
 			height: 30px;
 
@@ -42,26 +42,26 @@
 		}
 	}
 
-	&__container{
+	&__container {
 		height: 90vh;
 	}
 
-	&__item{
+	&__item {
 		display: flex;
 
 		width: 100%;
 
-		&[data-author="tail-out"]{
+		&[data-author="tail-out"] {
 			justify-content: flex-end;
 
-			& svg{
+			& svg {
 				right: -15px;
 
 				transform: scale(-1, 1);
 				fill: var(--msg-color-2);
 			}
 
-			& > .message__wrapper{
+			& > .message__wrapper {
 				margin-right: 25px;
 
 				border-bottom-right-radius: 0;
@@ -69,14 +69,14 @@
 			}
 		}
 
-		&[data-author="tail-in"] > .message__wrapper{
+		&[data-author="tail-in"] > .message__wrapper {
 			margin-left: 25px;
 
 			border-bottom-left-radius: 0;
 			background-color: var(--msg-color-1);
 		}
 
-		&[data-author="tail-in"] svg{
+		&[data-author="tail-in"] svg {
 			left: -15px;
 			fill: var(--msg-color-1);
 		}

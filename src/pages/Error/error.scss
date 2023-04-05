@@ -1,22 +1,24 @@
-body, html, main{
+body,
+html,
+main {
 	width: 100%;
 	height: 100%;
 
 	font-weight: normal;
 }
 
-main{
+main {
 	display: flex;
 }
 
-.wrapper{
+.wrapper {
 	margin: auto;
 }
 
-.wrapper *{
+.wrapper * {
 	text-align: center;
 }
 
-.backup{
+.backup {
 	text-decoration: none;
 }

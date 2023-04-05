@@ -1,5 +1,5 @@
-.chat{
-	&__tools{
+.chat {
+	&__tools {
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
@@ -20,13 +20,13 @@
 		}
 	}
 
-	&__top{
+	&__top {
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
 	}
 
-	&__main{
+	&__main {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -36,13 +36,13 @@
 		padding-right: 10px;
 	}
 
-	&__container{
+	&__container {
 		height: 80vh;
 
 		background-color: var(--bg-color-2);
 	}
 
-	&__item{
+	&__item {
 		display: flex;
 		align-items: center;
 		flex-direction: row;

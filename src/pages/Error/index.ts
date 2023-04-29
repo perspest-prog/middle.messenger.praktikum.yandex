@@ -8,8 +8,8 @@ interface ErrorProps extends Props{
 }
 
 class ErrorPage extends Block<ErrorProps>{
-    constructor(props: ErrorProps) {
-        super('main', props);
+    constructor() {
+        super('main', {code: 112, description: "wdawd"});
     }
 
     protected render(): DocumentFragment {

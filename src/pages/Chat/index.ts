@@ -5,13 +5,13 @@ import template from "./chat.hbs";
 import "./chat.scss";
 
 interface ChatPageProps extends Props{
-    chats: Chat[];
-    messages: Message[];
+    chats?: Chat[];
+    messages?: Message[];
 }
 
 class ChatPage extends Block<ChatPageProps>{
-    constructor(props: ChatPageProps){
-        super("div", {...props, className: ["chat__wrapper"]});
+    constructor(){
+        super("div", {className: ["chat__wrapper"]});
     }
 
     protected render(): DocumentFragment {

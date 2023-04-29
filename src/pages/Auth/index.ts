@@ -22,7 +22,7 @@ class AuthPage extends Block<AuthProps>{
                     new Input({type: "password", name: "password", placeholder: "Пароль", visible: true})
                 ],
                 link: {
-                    href: "#",
+                    href: "/signup",
                     text: "Нет аккаунта?"
                 }
             })

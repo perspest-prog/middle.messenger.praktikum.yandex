@@ -6,7 +6,7 @@ interface NavigateProps extends Props {}
 
 class NavigatePage extends Block<NavigateProps>{
     constructor() {
-        super();
+        super("nav");
     }
 
     protected render(): DocumentFragment {

@@ -36,7 +36,11 @@ button {
 }
 
 main {
-	height: 100%;
-
 	display: flex;
+
+	height: 100%;
+}
+
+a {
+	text-decoration: none;
 }

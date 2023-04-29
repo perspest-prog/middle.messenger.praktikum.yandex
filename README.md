@@ -13,14 +13,14 @@ https://www.figma.com/file/0Js87e4EMN5X8cWBwXJres/%D0%9C%D0%B5%D1%81%D1%81%D0%B5
 - `npm run install` - установка необходимых библиотек
 - `npm run dev` - запуск проекта в режиме разработчика
 - `npm run build` - сборка проекта
-- `npm run start` - запуск проекта (временно не работает)
+- `npm run start` - запуск проекта
 
-### Доступные страницы (временно не работают):
+### Доступные страницы:
 - `/signin` - вход
 - `/signup` - регистрация
 - `/chat` - чат
 - `/error` - ошибка
-- `/settings` - профиль и его редактирование
+- `/profile` - профиль и его редактирование
 
 ### **Пулл реквесты**
 - Спринт 1: https://github.com/perspest-prog/middle.messenger.praktikum.yandex/pull/1

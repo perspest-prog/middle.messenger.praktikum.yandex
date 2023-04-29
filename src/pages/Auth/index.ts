@@ -1,9 +1,9 @@
 import Block, { Props } from "../../utils/Block";
-import Form from "../../components/Form";
 import template from "./auth.hbs";
-import "./auth.scss";
+import Form from "../../components/Form";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
+import "./auth.scss";
 
 interface AuthProps extends Props{
     form: Form;

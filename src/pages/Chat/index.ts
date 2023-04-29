@@ -11,7 +11,23 @@ interface ChatPageProps extends Props{
 
 class ChatPage extends Block<ChatPageProps>{
     constructor(){
-        super("div", {className: ["chat__wrapper"]});
+        super("div", {
+            className: ["chat__wrapper"],
+            chats: [
+                new Chat({author: "Жендос", content: "Абоба бебра"}),
+                new Chat({author: "Жендос", content: "Абоба бебра"}),
+                new Chat({author: "Жендос", content: "Абоба бебра"}),
+                new Chat({author: "Жендос", content: "Абоба бебра"}),
+                new Chat({author: "Жендос", content: "Абоба бебра"}),
+                new Chat({author: "Жендос", content: "Абоба бебра"}),
+                new Chat({author: "Жендос", content: "Абоба бебра"}),
+                new Chat({author: "Жендос", content: "Абоба бебра"}),
+            ],
+            messages: [
+                new Message({type: "tail-in", content: "shdeawicei scjs usachusa sdchsd heshsachs"}),
+                new Message({type: "tail-out", content: "shdeawicei scjs usachusa sdchsd heshsachs"}),
+            ]
+        });
     }
 
     protected render(): DocumentFragment {

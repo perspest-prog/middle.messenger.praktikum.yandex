@@ -12,14 +12,14 @@
 		width: 200px;
 		height: 30px;
 	}
-}
 
-.error {
-	position: absolute;
-	top: 40px;
-	right: 0;
+	& > .error {
+		position: absolute;
+		top: 40px;
+		right: 0;
 
-	color: red;
+		color: red;
 
-	font-size: small;
+		font-size: small;
+	}
 }

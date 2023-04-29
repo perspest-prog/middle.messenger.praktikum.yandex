@@ -1,9 +1,9 @@
 import Block, { Props } from "../../utils/Block";
-import Form from "../../components/AnotherForm";
 import template from "./settings.hbs";
-import "./settings.scss";
+import Form from "../../components/AnotherForm";
 import Button from "../../components/Button";
 import Input from "../../components/AnotherInput";
+import "./settings.scss";
 
 interface SettingsPageProps extends Props{
     form: Form

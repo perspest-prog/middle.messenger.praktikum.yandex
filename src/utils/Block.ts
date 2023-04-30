@@ -10,7 +10,7 @@ export interface Props{
 }
 
 // Нельзя создавать экземпляр данного класса
-class Block<IProps extends Props> {
+abstract class Block<IProps extends Props> {
   static EVENTS = {
     INIT: "init",
     FLOW_CDM: "flow:component-did-mount",
@@ -20,18 +20,11 @@ class Block<IProps extends Props> {
 
   public id = nanoid(6);
   protected props: IProps;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public children: Record<string, any>;
   private eventBus: () => EventBus;
   private _element: HTMLElement | null = null;
-  private _meta: { tagName: string; props: IProps; };
+  private _meta: { tagName: keyof HTMLElementTagNameMap; props: IProps; };
 
-  /** JSDoc
-   * @param {string} tagName
-   * @param {Object} props
-   *
-   * @returns {void}
-   */
   constructor(tagName: keyof HTMLElementTagNameMap = "div", propsWithChildren: object = {}) {
     const eventBus = new EventBus();
 
@@ -72,6 +65,14 @@ class Block<IProps extends Props> {
 
     Object.keys(events).forEach(eventName => {
       this._element?.addEventListener(eventName, events[eventName]);
+    });
+  }
+
+  _removeEvents() {
+    const {events = {}} = this.props as { events: Record<string, () =>void> };
+
+    Object.keys(events).forEach(eventName => {
+      this._element?.removeEventListener(eventName, events[eventName]);
     });
   }
 

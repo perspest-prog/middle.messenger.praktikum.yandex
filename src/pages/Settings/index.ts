@@ -20,7 +20,8 @@ class SettingsPage extends Block<SettingsPageProps>{
                     new Input({type: "text", name: "login", label: "Логин"}),
                     new Input({type: "text", name: "first_name", label: "Имя"}),
                     new Input({type: "text", name: "second_name", label: "Фамилия"}),
-                    new Input({type: "password", name: "password", label: "Пароль"})
+                    new Input({type: "password", name: "password", label: "Пароль"}),
+                    new Input({type: "text", name: "display_name", label: "Имя в чате"})
                 ],
                 button1: new Button({label: "Изменить", type: "button"}),
                 button2: new Button({label: "Готово"})

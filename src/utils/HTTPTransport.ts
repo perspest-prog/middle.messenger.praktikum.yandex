@@ -6,19 +6,15 @@ enum METHODS {
     DELETE = 'DELETE',
 }
 
-type Options = {
+interface Options {
     method: string;
     timeout?: number;
     data?: object
-};
+}
 
 type OptionsWithoutMethod = Omit<Options, 'method'>;
+type HTTPMethod = (url: string, options?: OptionsWithoutMethod) => Promise<XMLHttpRequest>;
 
-/**
-* Функцию реализовывать здесь необязательно, но может помочь не плодить логику у GET-метода
-* На входе: объект. Пример: {a: 1, b: 2, c: {d: 123}, k: [1, 2, 3]}
-* На выходе: строка. Пример: ?a=1&b=2&c=[object Object]&k=1,2,3
-*/
 function queryStringify(data?: object): string {
     if (!data) {
         return '';
@@ -26,31 +22,25 @@ function queryStringify(data?: object): string {
     return Object.entries(data).reduce((acc, [key, val], index) => {
         return index + 1 !== Object.entries(data).length ? acc + `${key}=${val}&` : acc + `${key}=${val}`;
     }, Object.entries(data).length > 0 ? '?' : '');
-// Можно делать трансформацию GET-параметров в отдельной функции
 }
 
 class HTTPTransport {
-    public get(url: string, options: OptionsWithoutMethod = {}) {
+    public get: HTTPMethod = (url, options = {}) => {
         const str = queryStringify(options?.data);
         return this.request(url + str, {...options, method: METHODS.GET}, options.timeout);
-    }
+    };
 
-    public post(url: string, options: OptionsWithoutMethod = {}) {
+    public post: HTTPMethod = (url, options = {}) => {
         return this.request(url, {...options, method: METHODS.POST}, options.timeout);
-    }
-    public put(url: string, options: OptionsWithoutMethod = {}) {
+    };
+    public put: HTTPMethod = (url, options = {}) => {
         return this.request(url, {...options, method: METHODS.PUT}, options.timeout);
-    }
+    };
 
-    public delete(url: string,options: OptionsWithoutMethod = {}) {
+    public delete: HTTPMethod = (url, options = {}) => {
         return this.request(url, {...options, method: METHODS.DELETE}, options.timeout);
-    }
+    };
 
-    // PUT, POST, DELETE
-
-    // options:
-    // headers — obj
-    // data — obj
     private request(url: string, options: Options, timeout = 5000): Promise<XMLHttpRequest> {
         const {method, data} = options;
 
@@ -70,7 +60,7 @@ class HTTPTransport {
             if (method === METHODS.GET || !data) {
                 xhr.send();
             } else {
-                xhr.send(data);
+                xhr.send(data as XMLHttpRequestBodyInit);
             }
         });
     }

@@ -29,12 +29,9 @@ class Input extends Block<InputProps>{
 
     protected init(): void {
         this.props.events = {
-            click: (e) => this.setVisible(e!)
+            click: (e) => this.setVisible(e!),
+            focusout: this.checkValid.bind(this)
         };
-    }
-
-    componentDidMount(): void {
-        this.element!.children[0].addEventListener("blur", this.checkValid.bind(this));
     }
 
     protected render(): DocumentFragment {
@@ -43,18 +40,18 @@ class Input extends Block<InputProps>{
 
     private setVisible(event: Event): void {
         if (event.target === this.element!.querySelector('.visible')) {
-            const password: HTMLInputElement = this.element!.children[0];
+            const password = this.element!.children[0] as HTMLInputElement;
             if(password.type === 'password') password.setAttribute('type', 'text');
             else password.setAttribute('type', 'password');
         }
     }
 
     public getName(): "email" | "phone" | "password" | "first_name" | "second_name" | "login" {
-        return this.element!.childNodes[0].name;
+        return (this.element!.childNodes[0]).name;
     }
 
     public getValue(): string {
-        return this.element!.childNodes[0].value;
+        return (this.element!.childNodes[0] as HTMLInputElement).value;
     }
 
     public checkValid(): void {

@@ -139,6 +139,8 @@ abstract class Block<IProps extends Props> {
   private _render() {
     const fragment = this.render();
 
+    this._removeEvents();
+
     this._element!.innerHTML = '';
 
     this._element!.append(fragment);

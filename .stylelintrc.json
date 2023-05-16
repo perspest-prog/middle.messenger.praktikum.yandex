@@ -1,0 +1,17 @@
+{
+    "extends": [
+        "stylelint-config-standard",
+        "stylelint-order-config-standard"
+    ],
+    "plugins": [
+        "stylelint-order"
+    ],
+    "rules": {
+        "indentation": "tab",
+        "color-hex-case": "lower",
+        "selector-class-pattern": null
+    },
+    "ignoreFiles": [
+        "./static/**/*"
+    ]
+}

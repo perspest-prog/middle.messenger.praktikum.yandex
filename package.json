@@ -1,16 +1,19 @@
 {
   "name": "middle.messenger.praktikum.yandex",
-  "version": "1.0.0",
+  "version": "0.2.1",
   "description": "Messenger",
+  "private": true,
   "scripts": {
-    "install": "npm i parcel -D && npm i express",
-    "dev": "parcel src/index.pug --open --port 3000",
-    "build": "parcel build src/index.pug --public-url ./ --no-cache",
-    "start": "npm run build && node ./server.js"
+    "install": "npm i express && npm i -D parcel @anikin/parcel-transformer-handlebars-precompile parcel-transformer-pug-precompile typescript nanoid && npm i -D eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin stylelint stylelint-config-standard stylelint-order stylelint-order-config-standard",
+    "dev": "parcel src/index.html --open",
+    "build": "parcel build src/index.html --public-url ./ --no-cache",
+    "start": "npm run build && node ./server.js",
+    "lint:css": "stylelint \"**/*.scss\" --fix",
+    "lint:js": "node_modules/.bin/eslint . --fix"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/perspest-prog/middle.messenger.praktikum.yandex.git"
+    "url": "https://github.com/perspest-prog/middle.messenger.praktikum.yandex.git"
   },
   "keywords": [],
   "author": "",
@@ -20,15 +23,26 @@
   },
   "homepage": "https://github.com/perspest-prog/middle.messenger.praktikum.yandex#readme",
   "devDependencies": {
+    "@anikin/parcel-transformer-handlebars-precompile": "^1.0.1",
     "@parcel/packager-raw-url": "^2.8.3",
-    "@parcel/transformer-pug": "^2.8.3",
     "@parcel/transformer-sass": "^2.8.3",
     "@parcel/transformer-webmanifest": "^2.8.3",
-    "parcel": "^2.8.3"
+    "@typescript-eslint/eslint-plugin": "^5.57.1",
+    "@typescript-eslint/parser": "^5.57.1",
+    "eslint": "^8.37.0",
+    "nanoid": "^4.0.2",
+    "parcel": "^2.8.3",
+    "parcel-transformer-pug-precompile": "^1.0.6",
+    "stylelint": "^13.13.1",
+    "stylelint-config-standard": "^22.0.0",
+    "stylelint-order": "^4.1.0",
+    "stylelint-order-config-standard": "^0.1.3",
+    "typescript": "^4.9.5"
   },
   "dependencies": {
     "express": "^4.18.2"
   },
+  "browserslist": "> 0.5%, last 2 versions, not dead",
   "engines": {
     "node": "^16.0.0",
     "npm": "^8.15.0"

@@ -9,11 +9,7 @@ import "./index.scss";
 
 
 window.addEventListener('DOMContentLoaded', () => {
-    const root = document.getElementById("root")!;
-
-    const router = new Router(root);
-
-    router
+    Router
         .use("/", NavigatePage)
         .use("/signin", AuthPage)
         .use('/signup', RegPage)

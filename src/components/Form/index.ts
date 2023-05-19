@@ -1,6 +1,7 @@
 import Block, { Props } from "../../utils/Block";
 import Button from "../Button";
 import Input from "../Input";
+import Link from "../Link";
 import template from "./form.hbs";
 import "./form.scss";
 
@@ -8,10 +9,7 @@ interface FormProps extends Props{
     title: string;
     inputs: Input[];
     button: Button;
-    link?: {
-        href: string,
-        text: string;
-    }
+    link?: Link;
 }
 
 class Form extends Block<FormProps>{

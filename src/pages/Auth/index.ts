@@ -1,8 +1,9 @@
 import Block, { Props } from "../../utils/Block";
-import template from "./auth.hbs";
 import Form from "../../components/Form";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
+import Link from "../../components/Link";
+import template from "./auth.hbs";
 import "./auth.scss";
 
 interface AuthProps extends Props{
@@ -21,10 +22,7 @@ class AuthPage extends Block<AuthProps>{
                     new Input({type: "text", name: "login", placeholder: "Логин", visible: false}),
                     new Input({type: "password", name: "password", placeholder: "Пароль", visible: true})
                 ],
-                link: {
-                    href: "/signup",
-                    text: "Нет аккаунта?"
-                }
+                link: new Link({href: "/signup", label: "Нет аккаунта?", className: ["form__link"]})
             })
         });
     }

@@ -1,12 +1,11 @@
 import Block from "./Block";
 
-
 class Route {
     private page: Block | null = null;
     private pathname: string;
-    private pageType: any;
+    private pageType: new () => Block;
 
-    constructor(pathname: string, pageType: any) {
+    constructor(pathname: string, pageType: new () => Block) {
         this.pathname = pathname;
         this.pageType = pageType;
     }
@@ -34,11 +33,15 @@ class Router {
     private currentRoute: Route | null  = null;
     private root: HTMLElement;
 
-    constructor(rootElement: HTMLElement) {
+    constructor(root: string) {
+        const rootElement = document.getElementById(root);
+        if (!rootElement) {
+            throw new Error("Не найден root элемент");
+        }
         this.root = rootElement;
     }
 
-    public use(pathname: string, page: any): Router {
+    public use(pathname: string, page: new () => Block): Router {
         const route = new Route(pathname, page);
         this.routes.push(route);
 
@@ -53,6 +56,12 @@ class Router {
         };
 
         this._onRoute(window.location.pathname);
+    }
+
+    public navigate(to: string): void {
+        history.pushState(null, "", to);
+
+        this._onRoute(to);
     }
 
     private _onRoute(pathname: string): void {
@@ -71,4 +80,4 @@ class Router {
     }
 }
 
-export default Router;
+export default new Router("root");

@@ -10,7 +10,7 @@ export interface Props{
 }
 
 // Нельзя создавать экземпляр данного класса
-abstract class Block<IProps extends Props> {
+abstract class Block<IProps extends Props = any> {
   static EVENTS = {
     INIT: "init",
     FLOW_CDM: "flow:component-did-mount",

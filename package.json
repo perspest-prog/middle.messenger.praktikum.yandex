@@ -1,6 +1,6 @@
 {
   "name": "middle.messenger.praktikum.yandex",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Messenger",
   "private": true,
   "scripts": {
@@ -32,7 +32,6 @@
     "eslint": "^8.37.0",
     "nanoid": "^4.0.2",
     "parcel": "^2.8.3",
-    "parcel-transformer-pug-precompile": "^1.0.6",
     "stylelint": "^13.13.1",
     "stylelint-config-standard": "^22.0.0",
     "stylelint-order": "^4.1.0",

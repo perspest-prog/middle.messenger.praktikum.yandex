@@ -15,12 +15,13 @@ class Route {
             this.page = new this.pageType;
         }
         
-        // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
-        element.appendChild(this.page?.getContent()!);
+        element.appendChild(this.page.getContent());
+        this.page.dispatchComponentDidMount();
     }
 
     public off(element: HTMLElement): void {
         element.innerHTML = "";
+        this.page = null;
     }
 
     public match(pathname: string): boolean {

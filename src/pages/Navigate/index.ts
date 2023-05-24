@@ -9,7 +9,7 @@ interface NavigateProps extends Props {
 
 class NavigatePage extends Block<NavigateProps>{
     constructor() {
-        super("main", {
+        super({
             links: [
                 new Link({href: "/signin", label: "Вход"}),
                 new Link({href: "/signup", label: "Регистрация"}),

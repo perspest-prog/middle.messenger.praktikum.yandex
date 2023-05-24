@@ -9,14 +9,15 @@ interface LinkProps extends Props {
 
 class Link extends Block<LinkProps> {
     constructor(props: LinkProps) {
-        super("span", props);
+        super(props);
     }
 
     protected init(): void {
-        this.props.events = {
-            ...this.props.events,
-            click: this.clickNandler.bind(this)
-        };
+        this.setProps({
+            events: {
+                click: this.clickNandler.bind(this)
+            }
+        });
     }
 
     private clickNandler(e: MouseEvent) {

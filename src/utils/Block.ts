@@ -23,17 +23,11 @@ abstract class Block<IProps extends Props = Props> {
   public children: Record<string, Block | Block[]>;
   private eventBus: () => EventBus;
   private _element: HTMLElement;
-  private _meta: { tagName: keyof HTMLElementTagNameMap; props: IProps; };
 
-  constructor(tagName: keyof HTMLElementTagNameMap = "div", propsWithChildren: object = {}) {
+  constructor(propsWithChildren: object = {}) {
     const eventBus = new EventBus();
 
     const { props, children } = this._getChildrenAndProps(propsWithChildren);
-
-    this._meta = {
-      tagName,
-      props
-    };
 
     this.children = children;
     this.props = this._makeItProxy(props);
@@ -84,8 +78,7 @@ abstract class Block<IProps extends Props = Props> {
   }
 
   _createResources() {
-    const { tagName } = this._meta;
-    this._element = document.createElement(tagName);
+    this._element = document.createElement("div");
   }
 
   private _init() {
@@ -141,9 +134,9 @@ abstract class Block<IProps extends Props = Props> {
 
     this._removeEvents();
 
-    this._element!.innerHTML = '';
-
-    this._element!.append(fragment);
+    const newElement = fragment.firstElementChild as HTMLElement;
+    this._element.replaceWith(newElement);
+    this._element = newElement;
 
     if (this.props.className) this._element!.classList.add(...this.props.className);
 

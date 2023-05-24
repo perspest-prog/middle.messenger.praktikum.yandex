@@ -20,9 +20,9 @@ abstract class Block<IProps extends Props = Props> {
 
   public id = nanoid(6);
   protected props: IProps;
-  public children: Record<string, any>;
+  public children: Record<string, Block | Block[]>;
   private eventBus: () => EventBus;
-  private _element: HTMLElement | null = null;
+  private _element: HTMLElement;
   private _meta: { tagName: keyof HTMLElementTagNameMap; props: IProps; };
 
   constructor(tagName: keyof HTMLElementTagNameMap = "div", propsWithChildren: object = {}) {
@@ -61,7 +61,7 @@ abstract class Block<IProps extends Props = Props> {
   }
 
   _addEvents() {
-    const {events = {}} = this.props as { events: Record<string, () =>void> };
+    const {events = {}} = this.props;
 
     Object.keys(events).forEach(eventName => {
       this._element?.addEventListener(eventName, events[eventName]);
@@ -69,10 +69,10 @@ abstract class Block<IProps extends Props = Props> {
   }
 
   _removeEvents() {
-    const {events = {}} = this.props as { events: Record<string, () =>void> };
+    const {events = {}} = this.props;
 
     Object.keys(events).forEach(eventName => {
-      this._element?.removeEventListener(eventName, events[eventName]);
+      this._element.removeEventListener(eventName, events[eventName]);
     });
   }
 
@@ -150,7 +150,7 @@ abstract class Block<IProps extends Props = Props> {
     this._addEvents();
   }
 
-  protected compile(template: (context: any) => string, context: any): DocumentFragment {
+  protected compile(template: HandlebarsTemplateDelegate,  context: any): DocumentFragment {
     const contextAndStubs = { ...context };
 
     Object.entries(this.children).forEach(([name, component]) => {
@@ -167,29 +167,23 @@ abstract class Block<IProps extends Props = Props> {
 
     temp.innerHTML = html;
 
+    const replaceStub = (component: Block) => {
+      const stub = temp.content.querySelector(`[data-id="${component.id}"]`);
+
+      if (!stub) {
+        return;
+      }
+
+      component.getContent().append(...Array.from(stub.childNodes));
+
+      stub.replaceWith(component.getContent());
+    };
+
     Object.entries(this.children).forEach(([, component]) => {
       if (component instanceof Array) {
-        component.forEach((B) => {
-          const stub = temp.content.querySelector(`[data-id="${B.id}"]`);
-
-          if (!stub) {
-            return;
-          }
-
-          B.getContent()?.append(...Array.from(stub.childNodes));
-
-          stub.replaceWith(B.getContent()!);
-        });
+        component.forEach((B) => replaceStub(B));
       } else {
-        const stub = temp.content.querySelector(`[data-id="${component.id}"]`);
-
-        if (!stub) {
-          return;
-        }
-
-        component.getContent()?.append(...Array.from(stub.childNodes));
-
-        stub.replaceWith(component.getContent()!);
+        replaceStub(component);
       }
     });
 

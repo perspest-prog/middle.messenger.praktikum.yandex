@@ -9,14 +9,13 @@ interface ButtonProps extends Props{
 
 class Button extends Block<ButtonProps>{
     constructor(props: ButtonProps) {
-        super('button', {...props, className: ["button"]});
+        super(props);
     }
 
     protected init(): void {
-        if(this.props.type)
-            this.element!.type = this.props.type;
-        else
-            this.element!.type = "submit";
+        this.setProps({
+            type: this.props.type || "submit"
+        });
     }
 
     protected render(): DocumentFragment {

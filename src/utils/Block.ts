@@ -6,7 +6,7 @@ import { nanoid } from 'nanoid';
 export interface Props{
   className?: string[];
   id?: string;
-  events?: Record<string, (event?: Event) =>void>
+  events?: Record<string, (event: Event) =>void>
 }
 
 // Нельзя создавать экземпляр данного класса
@@ -174,7 +174,7 @@ abstract class Block<IProps extends Props = Props> {
 
     Object.entries(this.children).forEach(([, component]) => {
       if (component instanceof Array) {
-        component.forEach((B) => replaceStub(B));
+        component.forEach(replaceStub);
       } else {
         replaceStub(component);
       }

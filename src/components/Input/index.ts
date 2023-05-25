@@ -5,6 +5,7 @@ import "./input.scss";
 interface InputProps extends Props {
     type: string;
     name: string;
+    value?: string;
     placeholder: string;
     visible: boolean;
 }
@@ -21,14 +22,12 @@ class Input extends Block<InputProps>{
 
 
     constructor(props: InputProps) {
-        super("div", {
-            ...props, 
-            className: ["inputBox"]
-        });
+        super(props);
     }
 
     protected init(): void {
         this.props.events = {
+            change: this.changeHandler.bind(this),
             click: (e) => this.setVisible(e!),
             focusout: this.checkValid.bind(this)
         };
@@ -39,49 +38,55 @@ class Input extends Block<InputProps>{
     }
 
     private setVisible(event: Event): void {
-        if (event.target === this.element!.querySelector('.visible')) {
-            const password = this.element!.children[0] as HTMLInputElement;
-            if(password.type === 'password') password.setAttribute('type', 'text');
-            else password.setAttribute('type', 'password');
+        if (event.target === this.element.querySelector('.visible')) {
+            this.setProps({
+                type: this.props.type === "password" ? "text" : "password"
+            });
         }
     }
 
-    public getName(): "email" | "phone" | "password" | "first_name" | "second_name" | "login" {
-        return (this.element!.childNodes[0]).name;
+    private changeHandler(e: Event) {
+        this.setProps({
+            value: (e.target as HTMLInputElement).value
+        });
+        this.checkValid();
     }
 
-    public getValue(): string {
-        return (this.element!.childNodes[0] as HTMLInputElement).value;
+    public getName(): string {
+        return this.props.name;
+    }
+
+    public getValue(): string | undefined {
+        return this.props.value;
     }
 
     public checkValid(): void {
-        const err: HTMLDivElement = this.element!.querySelector('.error')!;
-
+        console.log("focusout!");
         if (!this.getValue()) {
-            err.innerText = "Заполните это поле";
+            this.setProps({error: "Заполните это поле"});
         } else if (!Input.REGEXP[this.getName()].test(this.getValue())) {
             switch (this.getName()) {
                 case "email":
-                    err.innerText = "Введите корректную почту";
+                    this.setProps({error: "Введите корректную почту"});
                     break;
                 case "phone":
-                    err.innerText = "Введите корректный номер телефона";
+                    this.setProps({error: "Введите корректный номер телефона"});
                     break;
                 case "password":
-                    err.innerText = "Длина пароля должна быть более 6 символов. Пароль должен содержать цифры и специальные символы";
+                    this.setProps({error: "Длина пароля должна быть более 6 символов. Пароль должен содержать цифры и специальные символы"});
                     break;
                 case "first_name":
-                    err.innerText = "Имя может содержать только русские и английские буквы";
+                    this.setProps({error: "Имя может содержать только русские и английские буквы"});
                     break;
                 case "second_name":
-                    err.innerText = "Фамилия может содержать только русские и английские буквы";
+                    this.setProps({error: "Фамилия может содержать только русские и английские буквы"});
                     break;
                 case "login":
-                    err.innerText = "Логин должен быть от 4 до 16 символов";
+                    this.setProps({error: "Логин должен быть от 4 до 16 символов"});
                     break;
             }
         } else {
-            err.innerText = '';
+            this.setProps({error: ''});
         }
     }
 }

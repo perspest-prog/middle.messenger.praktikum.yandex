@@ -11,21 +11,19 @@ interface RegProps extends Props {
 
 class RegPage extends Block<RegProps>{
     constructor(){
-        super('main', {});
-    }
-
-    protected init(): void {
-        this.children.form = new Form({
-            title: "Регистрация",
-            button: new Button({label: "Зарегестрироваться"}),
-            inputs: [
-                new Input({type: "tel", name: "phone", placeholder: "Номер телефона", visible: false}),
-                new Input({type: "text", name: "email", placeholder: "Почта", visible: false}),
-                new Input({type: "text", name: "login", placeholder: "Логин", visible: false}),
-                new Input({type: "text", name: "first_name", placeholder: "Имя", visible: false}),
-                new Input({type: "text", name: "second_name", placeholder: "Фамилия", visible: false}),
-                new Input({type: "password", name: "password", placeholder: "Пароль", visible: true})
-            ]
+        super({
+            form: new Form({
+                title: "Регистрация",
+                button: new Button({label: "Зарегестрироваться"}),
+                inputs: [
+                    new Input({type: "tel", name: "phone", placeholder: "Номер телефона", visible: false}),
+                    new Input({type: "text", name: "email", placeholder: "Почта", visible: false}),
+                    new Input({type: "text", name: "login", placeholder: "Логин", visible: false}),
+                    new Input({type: "text", name: "first_name", placeholder: "Имя", visible: false}),
+                    new Input({type: "text", name: "second_name", placeholder: "Фамилия", visible: false}),
+                    new Input({type: "password", name: "password", placeholder: "Пароль", visible: true})
+                ]
+            })
         });
     }
 

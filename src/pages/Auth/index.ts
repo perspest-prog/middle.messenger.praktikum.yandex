@@ -12,17 +12,15 @@ interface AuthProps extends Props{
 
 class AuthPage extends Block<AuthProps>{
     constructor() {
-        super('main', {
+        super({
             form: new Form({
                 title: "Вход",
-                button: new Button({
-                    label: "Войти"
-                }),
+                button: new Button({label: "Войти"}),
                 inputs: [
                     new Input({type: "text", name: "login", placeholder: "Логин", visible: false}),
                     new Input({type: "password", name: "password", placeholder: "Пароль", visible: true})
                 ],
-                link: new Link({href: "/signup", label: "Нет аккаунта?", className: ["form__link"]})
+                link: new Link({href: "/signup", label: "Нет аккаунта?"})
             })
         });
     }

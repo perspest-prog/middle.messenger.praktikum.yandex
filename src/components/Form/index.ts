@@ -14,7 +14,7 @@ interface FormProps extends Props{
 
 class Form extends Block<FormProps>{
     constructor(props: FormProps) {
-        super('div', {...props, className: ["form"]});
+        super(props);
     }
 
     protected init(): void {

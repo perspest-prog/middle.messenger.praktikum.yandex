@@ -9,7 +9,7 @@ interface ChatProps extends Props{
 
 class Chat extends Block<ChatProps>{
     constructor(props: ChatProps){
-        super("div", {...props, className: ["chat__item"]});
+        super(props);
     }
 
     protected render(): DocumentFragment {

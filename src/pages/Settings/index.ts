@@ -1,8 +1,8 @@
 import Block, { Props } from "../../utils/Block";
-import template from "./settings.hbs";
 import Form from "../../components/AnotherForm";
 import Button from "../../components/Button";
 import Input from "../../components/AnotherInput";
+import template from "./settings.hbs";
 import "./settings.scss";
 
 interface SettingsPageProps extends Props{
@@ -11,8 +11,7 @@ interface SettingsPageProps extends Props{
 
 class SettingsPage extends Block<SettingsPageProps>{
     constructor(){
-        super("div", {
-            className: ["settings__wrapper"],
+        super({
             form: new Form({
                 inputs: [
                     new Input({type: "tel", name: "phone", label: "Номер телефона"}),

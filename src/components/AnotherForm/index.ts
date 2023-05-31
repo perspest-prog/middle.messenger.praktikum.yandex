@@ -11,12 +11,17 @@ interface FormProps extends Props{
 }
 
 class Form extends Block<FormProps>{
+    children: {
+        inputs: Input[];
+        button1: Button;
+        button2: Button;
+    }
+
     constructor(props: FormProps) {
-        super("form", {...props, className: ["sform"]});
+        super(props);
     }
 
     protected init(): void {
-        this.children.button2.element.toggleAttribute("disabled");
         this.children.button1.props.events = {
             ...this.children.button1.props.events,
             click: () => this.onClick()
@@ -25,6 +30,10 @@ class Form extends Block<FormProps>{
             ...this.children.button1.props.events,
             click: (e: Event) => this.onSubmit(e)
         };
+    }
+
+    componentDidMount(): void {
+        this.children.button2.element.toggleAttribute("disabled");
     }
 
     protected render(): DocumentFragment {
@@ -36,15 +45,15 @@ class Form extends Block<FormProps>{
             label: this.children.button1.props.label === "Изменить" ? "Отменить" : "Изменить"
         });
         this.children.button2.element.toggleAttribute("disabled");
-        this.children.inputs.forEach((input: Input) => input.element!.children[1].toggleAttribute("disabled"));
-        this.children.inputs.forEach((input: Input) => input.element!.children[2].innerText = "");
+        this.children.inputs.forEach((input: Input) => input.element.children[1].toggleAttribute("disabled"));
+        this.children.inputs.forEach((input: Input) => input.element.children[2].innerText = "");
     }
 
     private onSubmit(event?: Event): void {
         event?.preventDefault();
         this.children.inputs.forEach((input: Input) => input.checkValid());
 
-        const data = this.children.inputs.reduce((acc: object, input: Input) => {
+        const data = this.children.inputs.reduce((acc, input) => {
             return {...acc, [input.getName()]: input.getValue()};
         }, {});
 

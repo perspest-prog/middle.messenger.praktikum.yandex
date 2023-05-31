@@ -18,9 +18,9 @@ abstract class Block<IProps extends Props = Props> {
     FLOW_RENDER: "flow:render"
   };
 
-  public id = nanoid(6);
+  private id = nanoid(6);
   protected props: IProps;
-  public children: Record<string, Block | Block[]>;
+  protected children: Record<string, Block | Block[]>;
   private eventBus: () => EventBus;
   private _element: HTMLElement;
 

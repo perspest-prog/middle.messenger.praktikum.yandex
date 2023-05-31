@@ -21,7 +21,7 @@ class Input extends Block<InputProps>{
     };
 
     constructor(props: InputProps){
-        super("div", {...props, className: ["inputBox_big"]});
+        super(props);
     }
 
     protected init(): void {

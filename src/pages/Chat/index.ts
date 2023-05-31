@@ -11,8 +11,7 @@ interface ChatPageProps extends Props{
 
 class ChatPage extends Block<ChatPageProps>{
     constructor(){
-        super("div", {
-            className: ["chat__wrapper"],
+        super({
             chats: [
                 new Chat({author: "Жендос", content: "Абоба бебра"}),
                 new Chat({author: "Жендос", content: "Абоба бебра"}),

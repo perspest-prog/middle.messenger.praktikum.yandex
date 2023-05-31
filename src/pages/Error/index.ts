@@ -11,7 +11,7 @@ interface ErrorProps extends Props{
 
 class ErrorPage extends Block<ErrorProps>{
     constructor() {
-        super('main', {
+        super({
             code: 112,
             description: "wdawd",
             link: new Link({href: "/", label: "Вернуться на главную страницу"})

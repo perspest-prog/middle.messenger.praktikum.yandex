@@ -18,19 +18,20 @@ class Form extends Block<FormProps>{
     }
 
     protected init(): void {
-        this.children.button.props.events = {
-            ...this.children.button.props.events,
-            click: (e: Event) => this.onSubmit(e)
-        };
+        (this.children.button as Button).setProps({
+            events: {
+                click: this.onSubmit.bind(this)
+            }
+        });
     }
 
     protected render(): DocumentFragment {
         return this.compile(template, this.props);
     }
 
-    private onSubmit(event?: Event): void {
-        event?.preventDefault();
-        this.children.inputs.forEach((input: Input) => input.checkValid());
+    private onSubmit(event: Event): void {
+        event.preventDefault();
+        (this.children.inputs as Input[]).forEach(input => input.checkValid());
 
         const data = this.children.inputs.reduce((acc: object, input: Input) => {
             return {...acc, [input.getName()]: input.getValue()};

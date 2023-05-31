@@ -9,11 +9,7 @@ interface MessageProps extends Props{
 
 class Message extends Block<MessageProps>{
     constructor(props: MessageProps){
-        super("div", {...props, className: ["message__item"]});
-    }
-
-    protected init(): void {
-        this.element?.setAttribute('data-author', this.props.type);
+        super(props);
     }
 
     protected render(): DocumentFragment {

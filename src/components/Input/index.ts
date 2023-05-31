@@ -61,7 +61,6 @@ class Input extends Block<InputProps>{
     }
 
     public checkValid(): void {
-        console.log("focusout!");
         if (!this.getValue()) {
             this.setProps({error: "Заполните это поле"});
         } else if (!Input.REGEXP[this.getName()].test(this.getValue())) {

@@ -25,6 +25,12 @@ function queryStringify(data?: object): string {
 }
 
 class HTTPTransport {
+    private url: string;
+
+    constructor(url: string) {
+        this.url = url;
+    }
+
     public get: HTTPMethod = (url, options = {}) => {
         const str = queryStringify(options?.data);
         return this.request(url + str, {...options, method: METHODS.GET}, options.timeout);
@@ -46,7 +52,7 @@ class HTTPTransport {
 
         return new Promise((resolve, reject) => {
             const xhr = new XMLHttpRequest();
-            xhr.open(method, url);
+            xhr.open(method, this.url + url);
 
             xhr.onload = function() {
                 resolve(xhr);
@@ -57,10 +63,13 @@ class HTTPTransport {
             xhr.onerror = reject;
             xhr.ontimeout = reject;
 
+            xhr.setRequestHeader("Content-Type", "application/json");
+
             if (method === METHODS.GET || !data) {
                 xhr.send();
             } else {
-                xhr.send(data as XMLHttpRequestBodyInit);
+                console.log(data)
+                xhr.send(data instanceof FormData ? data : JSON.stringify(data));
             }
         });
     }

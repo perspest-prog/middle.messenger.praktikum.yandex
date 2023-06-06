@@ -4,16 +4,19 @@ import Form from "../../components/Form";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
 import Link from "../../components/Link";
+import Notice from "../../components/Notice";
 import template from "./auth.hbs";
 import "./auth.scss";
 
 interface AuthProps extends Props{
     form: Form;
+    notice: Notice;
 }
 
 class AuthPage extends Block<AuthProps>{
     constructor() {
         super({
+            notice: new Notice(),
             form: new Form({
                 action: controller.signin.bind(controller),
                 title: "Вход",

@@ -1,0 +1,31 @@
+.notice {
+    background-color: #fc3333;
+    position: fixed;
+    z-index: 999;
+    top: 10;
+    right: -250;
+    border-radius: 5px;
+
+    transition: rigth cubic-bezier(0.075, 0.82, 0.165, 1);
+
+    height: 100px;
+    width: 250px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    & > svg {
+        cursor: pointer;
+    }
+
+    & > div {
+        margin-left: 3px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+    &.active {
+        right: 10;
+    }
+}

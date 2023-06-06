@@ -43,8 +43,6 @@ class Form extends Block<FormProps>{
             return {...acc, [input.getName()]: input.getValue()};
         }, {});
 
-        console.log(data);
-
         this.props.action(data);
     }
 }

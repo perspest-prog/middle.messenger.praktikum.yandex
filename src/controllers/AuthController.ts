@@ -37,11 +37,7 @@ class AuthController {
     }
 
     async getUser() {
-        try {
-            await this.api.getUser();
-        } catch (e) {
-            console.log(e);
-        }
+        const user = await this.api.getUser();
     }
 }
 

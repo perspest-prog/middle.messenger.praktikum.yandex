@@ -6,11 +6,11 @@ class AuthAPI extends BaseAPI {
     }
 
     public signin(data: object): Promise<XMLHttpRequest> {
-        return this.http.post("/signin", {data: data});
+        return this.http.post("/signin", {data});
     }
 
     public signup(data: object): Promise<XMLHttpRequest> {
-        return this.http.post("/signup", data);
+        return this.http.post("/signup", {data});
     }
 
     public getUser(): Promise<XMLHttpRequest> {

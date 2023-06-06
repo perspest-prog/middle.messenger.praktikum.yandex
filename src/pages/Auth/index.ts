@@ -1,3 +1,4 @@
+import controller from "../../controllers/AuthController";
 import Block, { Props } from "../../utils/Block";
 import Form from "../../components/Form";
 import Button from "../../components/Button";
@@ -14,6 +15,7 @@ class AuthPage extends Block<AuthProps>{
     constructor() {
         super({
             form: new Form({
+                action: controller.signin.bind(controller),
                 title: "Вход",
                 button: new Button({label: "Войти"}),
                 inputs: [

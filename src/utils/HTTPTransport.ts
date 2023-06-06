@@ -54,6 +54,16 @@ class HTTPTransport {
             const xhr = new XMLHttpRequest();
             xhr.open(method, this.url + url);
 
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                  if (xhr.status < 400) {
+                    resolve(xhr.response);
+                  } else {
+                    reject({...xhr.response, code: xhr.status});
+                  }
+                }
+            };
+
             xhr.onload = function() {
                 resolve(xhr);
             };
@@ -64,11 +74,12 @@ class HTTPTransport {
             xhr.ontimeout = reject;
 
             xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.responseType = "json";
+            xhr.withCredentials = true;
 
             if (method === METHODS.GET || !data) {
                 xhr.send();
             } else {
-                console.log(data)
                 xhr.send(data instanceof FormData ? data : JSON.stringify(data));
             }
         });

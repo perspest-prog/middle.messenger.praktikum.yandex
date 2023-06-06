@@ -6,6 +6,7 @@ import template from "./form.hbs";
 import "./form.scss";
 
 interface FormProps extends Props{
+    action: (...args: unknown[]) => void;
     title: string;
     inputs: Input[];
     button: Button;
@@ -13,12 +14,17 @@ interface FormProps extends Props{
 }
 
 class Form extends Block<FormProps>{
+    protected children: {
+        inputs: Input[]
+        button: Button
+    };
+
     constructor(props: FormProps) {
         super(props);
     }
 
     protected init(): void {
-        (this.children.button as Button).setProps({
+        this.children.button.setProps({
             events: {
                 click: this.onSubmit.bind(this)
             }
@@ -31,13 +37,15 @@ class Form extends Block<FormProps>{
 
     private onSubmit(event: Event): void {
         event.preventDefault();
-        (this.children.inputs as Input[]).forEach(input => input.checkValid());
+        this.children.inputs.forEach(input => input.checkValid());
 
-        const data = this.children.inputs.reduce((acc: object, input: Input) => {
+        const data = this.children.inputs.reduce((acc, input) => {
             return {...acc, [input.getName()]: input.getValue()};
         }, {});
 
         console.log(data);
+
+        this.props.action(data);
     }
 }
 

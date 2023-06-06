@@ -1,3 +1,4 @@
+import controller from "../../controllers/AuthController";
 import Block, { Props } from "../../utils/Block";
 import Form from "../../components/Form";
 import Input from "../../components/Input";
@@ -13,6 +14,7 @@ class RegPage extends Block<RegProps>{
     constructor(){
         super({
             form: new Form({
+                action: controller.signup.bind(controller),
                 title: "Регистрация",
                 button: new Button({label: "Зарегестрироваться"}),
                 inputs: [

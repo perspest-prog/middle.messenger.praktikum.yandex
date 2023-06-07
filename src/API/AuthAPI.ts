@@ -1,23 +1,24 @@
 import BaseAPI from "./BaseAPI";
+import { User } from "../types";
 
 class AuthAPI extends BaseAPI {
     constructor() {
         super("/auth");
     }
 
-    public signin(data: object): Promise<XMLHttpRequest> {
+    public signin(data: object) {
         return this.http.post("/signin", {data});
     }
 
-    public signup(data: object): Promise<XMLHttpRequest> {
+    public signup(data: object) {
         return this.http.post("/signup", {data});
     }
 
-    public getUser(): Promise<XMLHttpRequest> {
-        return this.http.get("/user");
+    public getUser() {
+        return this.http.get<User>("/user");
     }
 
-    public logout(): Promise<XMLHttpRequest> {
+    public logout() {
         return this.http.post("/logout");
     }
 }

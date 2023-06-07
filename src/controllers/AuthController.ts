@@ -1,5 +1,6 @@
 import AuthAPI from "../API/AuthAPI";
 import Router from "../utils/Router";
+import store from "../utils/Store";
 
 class AuthController {
     private api: AuthAPI;
@@ -11,8 +12,12 @@ class AuthController {
     async signup(data: any) {
         try {
             await this.api.signup(data);
+
+            await this.getUser();
+
+            Router.navigate("/chat");
         } catch (e) {
-            console.log(e);
+            store.set("error", e);
         }
     }
 
@@ -24,21 +29,25 @@ class AuthController {
 
             Router.navigate("/chat");
         } catch (e) {
-            console.error(e);
+            store.set("error", e);
         }
     }
 
     async logout() {
         try {
             await this.api.logout();
+
+            store.set("user", undefined);
+
+            Router.navigate("/login");
         } catch (e) {
-            console.log(e);
+            store.set("error", e);
         }
     }
 
     async getUser() {
         const user = await this.api.getUser();
-        console.log(user);
+        store.set("user", user);
     }
 }
 

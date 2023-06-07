@@ -1,4 +1,5 @@
 import Block, { Props } from "../../utils/Block";
+import { connect } from "../../utils/Store";
 import template from "./notice.hbs";
 import "./notice.scss";
 

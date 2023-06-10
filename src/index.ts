@@ -18,20 +18,16 @@ window.addEventListener('DOMContentLoaded', async () => {
         .use("/chat", ChatPage)
         .use("/error", ErrorPage);
 
-    let flag = true;
-
-    if (["/signin", "/signup", "/"].includes(window.location.pathname)) {
-        flag = false;
-    }
+    const { pathname } = window.location;
     
     try {
         await AuthController.getUser();
 
-        if (!flag) {
+        if (["/signin", "/signup", "/"].includes(pathname)) {
             Router.navigate("/chat");
         }
     } catch {
-        if (flag) {
+        if (["/chat", "/profile", "/"].includes(pathname)) {
             Router.navigate("/signin");
         }
     } finally {

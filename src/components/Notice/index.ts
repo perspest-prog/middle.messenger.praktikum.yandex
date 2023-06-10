@@ -8,7 +8,7 @@ interface NoticeProps extends Props {
     message: string;
 }
 
-class Notice extends Block<NoticeProps> {
+const Notice = connect(class extends Block<NoticeProps> {
     constructor() {
         super({
             title: "Ошибка!",
@@ -27,6 +27,6 @@ class Notice extends Block<NoticeProps> {
     protected render(): DocumentFragment {
         return this.compile(template, this.props);
     }
-}
+}, () => {})
 
 export default Notice;

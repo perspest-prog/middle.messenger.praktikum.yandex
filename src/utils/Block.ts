@@ -24,7 +24,7 @@ abstract class Block<IProps extends Props = Props> {
   private eventBus: () => EventBus;
   private _element: HTMLElement;
 
-  constructor(propsWithChildren: object = {}) {
+  constructor(propsWithChildren: IProps) {
     const eventBus = new EventBus();
 
     const { props, children } = this._getChildrenAndProps(propsWithChildren);

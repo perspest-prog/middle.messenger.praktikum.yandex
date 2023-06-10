@@ -65,7 +65,7 @@ class HTTPTransport {
             };
 
             xhr.onload = function() {
-                resolve(xhr);
+                resolve(xhr as T);
             };
 
             xhr.timeout = timeout;
@@ -81,8 +81,8 @@ class HTTPTransport {
                 xhr.send();
             } else {
                 xhr.send(data instanceof FormData ? data : JSON.stringify(data));
-            }
-        });
+            } 
+        }); 
     }
 }
 

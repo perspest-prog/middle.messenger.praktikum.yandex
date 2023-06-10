@@ -32,9 +32,9 @@ class Store extends EventBus {
 
 const store = new Store();
 
-const connect = <C extends new () => Block>(component: C, reducer: (state: State) => object) => {
+const connect = <T extends new (...args: any[]) => Block>(component: T, reducer: (state: State) => object) => {
     return class extends component {
-        constructor(props: ConstructorParameters<C>) {
+        constructor(...props: any[]) {
             super({...props, ...reducer(store.getState())});
 
             store.on(StoreEvents.Updated, () => {

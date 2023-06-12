@@ -1,31 +1,41 @@
 import Block, { Props } from "../../utils/Block";
-import Form from "../../components/AnotherForm";
-import Button from "../../components/Button";
-import Input from "../../components/AnotherInput";
+import HashRouter from "../../utils/HashRouter";
+import SettingsBlock from "../../components/SettingsBlock";
+import SettingsItem from "../../components/SettingsItem";
 import template from "./settings.hbs";
 import "./settings.scss";
 
 interface SettingsPageProps extends Props{
-    form: Form
+    blocks: SettingsBlock[];
 }
 
 class SettingsPage extends Block<SettingsPageProps>{
     constructor(){
         super({
-            form: new Form({
-                inputs: [
-                    new Input({type: "tel", name: "phone", label: "Номер телефона"}),
-                    new Input({type: "text", name: "email", label: "Почта"}),
-                    new Input({type: "text", name: "login", label: "Логин"}),
-                    new Input({type: "text", name: "first_name", label: "Имя"}),
-                    new Input({type: "text", name: "second_name", label: "Фамилия"}),
-                    new Input({type: "password", name: "password", label: "Пароль"}),
-                    new Input({type: "text", name: "display_name", label: "Имя в чате"})
-                ],
-                button1: new Button({label: "Изменить", type: "button"}),
-                button2: new Button({label: "Готово"})
-            })
+            blocks: [
+                new SettingsBlock({
+                    title: "Общие", 
+                    items: [
+                        new SettingsItem({label: "Профиль", href: "#"})
+                    ], 
+                    separator: true
+                }),
+                new SettingsBlock({
+                    title: "Изменить",
+                    items: [
+                        new SettingsItem({ label: "Данные", href: "#data"}),
+                        new SettingsItem({ label: "Аватар", href: "#avatar"}),
+                        new SettingsItem({ label: "Пароль", href: "#password" })
+                    ],
+                    separator: false
+                })
+            ]
         });
+    }
+
+    componentDidMount(): void {
+        new HashRouter("page_root")
+            .start();
     }
 
     protected render(): DocumentFragment {

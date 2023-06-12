@@ -1,0 +1,13 @@
+<li>
+    <span class="group__title">{{title}}</span>
+    <ul class="group__content">
+        {{#each items}}
+            <li>
+                {{{this}}}
+            </li>
+        {{/each}}
+    </ul>
+    {{#if separator}}
+        <div class="separator"></div>
+    {{/if}}
+</li>

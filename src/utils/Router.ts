@@ -1,6 +1,6 @@
 import Block from "./Block";
 
-class Route {
+export class Route {
     private page: Block | null = null;
     private pathname: string;
     private pageType: new () => Block;
@@ -33,6 +33,7 @@ class Router {
     private routes: Route[] = [];
     private currentRoute: Route | null  = null;
     private root: HTMLElement;
+    private currentPath = window.location.pathname;
 
     constructor(root: string) {
         const rootElement = document.getElementById(root);
@@ -52,6 +53,11 @@ class Router {
     public start(): void {
         window.onpopstate = (event: PopStateEvent) => {
             const target = event.currentTarget as Window;
+
+            if (target.location.pathname === this.currentPath) {
+                return;
+            }
+            this.currentPath = target.location.pathname;
 
             this._onRoute(target.location.pathname);
         };

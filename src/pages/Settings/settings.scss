@@ -39,7 +39,7 @@
 		margin-right: 5px;
 	}
 
-	& > span {
+	& > a {
 		width: 100%;
 	}
 
@@ -72,7 +72,7 @@
 	font-weight: 600;
 }
 
-li[role="separator"] {
+.separator {
 	height: 1px;
 	margin: 5px 0;
 

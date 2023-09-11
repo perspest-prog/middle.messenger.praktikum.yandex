@@ -1,5 +1,5 @@
 import AuthController from "./controllers/AuthController";
-import Router from "./utils/Router";
+import Router from "./core/Router";
 import AuthPage from "./pages/Auth";
 import RegPage from "./pages/Reg";
 import ErrorPage from "./pages/Error";

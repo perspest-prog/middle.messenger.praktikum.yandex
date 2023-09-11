@@ -1,10 +1,10 @@
-import Block, { Props } from "../../utils/Block";
+import Block, { Props } from "../../core/Block";
 import template from "./chat.hbs";
 import "./chat.scss";
 
 interface ChatProps extends Props{
-    author: string;
-    content: string;
+    title: string;
+    message: string;
 }
 
 class Chat extends Block<ChatProps>{

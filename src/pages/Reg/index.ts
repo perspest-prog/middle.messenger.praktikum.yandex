@@ -1,5 +1,5 @@
 import controller from "../../controllers/AuthController";
-import Block, { Props } from "../../utils/Block";
+import Block, { Props } from "../../core/Block";
 import Form from "../../components/Form";
 import Input from "../../components/Input";
 import Button from "../../components/Button";

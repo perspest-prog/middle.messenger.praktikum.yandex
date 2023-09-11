@@ -1,4 +1,4 @@
-import Block, { Props } from "../../utils/Block";
+import Block, { Props } from "../../core/Block";
 import template from "./hashLink.hbs";
 
 interface HashLinkProps extends Props {

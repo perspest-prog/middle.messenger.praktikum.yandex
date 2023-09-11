@@ -23,3 +23,21 @@ export interface SignInData {
     password: string;
 }
 
+export interface State {
+    error?: {
+        code: number;
+        reason?: string;
+    }
+    user?: User;
+    chats: Chat[];
+    messages?: object[];
+}
+
+export interface Chat {
+    avatar?: string;
+    created_by: number;
+    id: number;
+    last_message?: object;
+    title: string;
+    unread_count: number;
+}

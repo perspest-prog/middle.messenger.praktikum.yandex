@@ -1,4 +1,4 @@
-import Block, { Props } from "../../utils/Block";
+import Block, { Props } from "../../core/Block";
 import Link from "../../components/Link";
 import template from "./error.hbs";
 import "./error.scss";

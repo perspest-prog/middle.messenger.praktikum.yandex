@@ -1,4 +1,4 @@
-import HTTPTransport from "../utils/HTTPTransport";
+import HTTPTransport from "../core/HTTPTransport";
 
 abstract class BaseAPI {
     static BASE_URL = "https://ya-praktikum.tech/api/v2";

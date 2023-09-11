@@ -1,4 +1,5 @@
-import Block, { Props } from "../../utils/Block";
+import Block, { Props } from "../../core/Block";
+import checkValid from "../../utils/checkValid";
 import Button from "../Button";
 import Input from "../Input";
 import Link from "../Link";
@@ -6,7 +7,7 @@ import template from "./form.hbs";
 import "./form.scss";
 
 interface FormProps extends Props{
-    action: (...args: unknown[]) => void;
+    action: (...args: any[]) => void;
     title: string;
     inputs: Input[];
     button: Button;
@@ -14,11 +15,6 @@ interface FormProps extends Props{
 }
 
 class Form extends Block<FormProps>{
-    protected children: {
-        inputs: Input[]
-        button: Button
-    };
-
     constructor(props: FormProps) {
         super(props);
     }
@@ -37,13 +33,16 @@ class Form extends Block<FormProps>{
 
     private onSubmit(event: Event): void {
         event.preventDefault();
-        this.children.inputs.forEach(input => input.checkValid());
+        
+        if (this.children.inputs.every(checkValid)) {
 
-        const data = this.children.inputs.reduce((acc, input) => {
-            return {...acc, [input.getName()]: input.getValue()};
-        }, {});
+            const data = this.children.inputs.reduce((acc, input) => (
+                {...acc, [input.getName()]: input.getValue()}
+            ), {});
 
-        this.props.action(data);
+            this.props.action(data);
+
+        }
     }
 }
 

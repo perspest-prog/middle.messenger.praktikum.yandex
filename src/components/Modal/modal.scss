@@ -1,0 +1,26 @@
+.modal__wrappper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+.modal__content {
+    position: relative;
+    margin: auto;
+    padding: 40 30;
+    background-color: whitesmoke;
+    z-index: 9999;
+    border-radius: 12px;
+}
+
+.modal__close {
+    position: absolute;
+    display: flex;
+    top: 3;
+    right: 3;
+    cursor: pointer;
+}
+
+.modal__wrappper.closed {
+    display: none;
+}

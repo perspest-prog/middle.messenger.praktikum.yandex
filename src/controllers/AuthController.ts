@@ -1,6 +1,6 @@
 import AuthAPI from "../API/AuthAPI";
-import Router from "../utils/Router";
-import store from "../utils/Store";
+import Router from "../core/Router";
+import store from "../core/Store";
 import { SignInData, SignUpData } from "../types";
 
 class AuthController {

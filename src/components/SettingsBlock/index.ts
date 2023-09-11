@@ -1,4 +1,4 @@
-import Block, { Props } from "../../utils/Block";
+import Block, { Props } from "../../core/Block";
 import SettingsItem from "../SettingsItem";
 import template from "./settingsBlock.hbs";
 

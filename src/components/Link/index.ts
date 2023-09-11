@@ -1,5 +1,5 @@
-import Block, { Props } from "../../utils/Block";
-import Router from "../../utils/Router";
+import Block, { Props } from "../../core/Block";
+import Router from "../../core/Router";
 import template from "./link.hbs";
 
 interface LinkProps extends Props {

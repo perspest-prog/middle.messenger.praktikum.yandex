@@ -1,4 +1,4 @@
-import Block, { Props } from "../../utils/Block";
+import Block, { Props } from "../../core/Block";
 import HashLink from "../HashLink";
 import template from "./settingsItem.hbs";
 

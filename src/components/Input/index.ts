@@ -1,4 +1,4 @@
-import Block, { Props } from "../../utils/Block";
+import Block, { Props } from "../../core/Block";
 import template from "./input.hbs";
 import "./input.scss";
 
@@ -52,11 +52,11 @@ class Input extends Block<InputProps>{
         this.checkValid();
     }
 
-    public getName(): string {
+    public getName() {
         return this.props.name;
     }
 
-    public getValue(): string | undefined {
+    public getValue() {
         return this.props.value;
     }
 

@@ -1,5 +1,5 @@
 import controller from "../../controllers/AuthController";
-import Block, { Props } from "../../utils/Block";
+import Block, { Props } from "../../core/Block";
 import Form from "../../components/Form";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
@@ -10,7 +10,7 @@ import "./auth.scss";
 
 interface AuthProps extends Props{
     form: Form;
-    notice: Notice;
+    notice: InstanceType<typeof Notice>;
 }
 
 class AuthPage extends Block<AuthProps>{

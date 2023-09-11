@@ -1,6 +1,7 @@
 <div class="chat__wrapper">
     <div class="chat">
         <div class="chat__tools">
+            {{{modal}}}
             <div class="chat__top">
                 <div class="avatar"></div>
                 <div class="options">
@@ -16,16 +17,12 @@
             </div>
         </div>
         <div class="chat__container _container" data-simplebar>
-            {{#each chats}}
-                {{{this}}}
-            {{/each}}
+            {{{chats}}}
         </div>
     </div>
     <div class="message">
         <main class="message__container _container" data-simplebar>
-            {{#each messages}}
-                {{{this}}}
-            {{/each}}
+            {{{messages}}}
         </main>
         <div class="message__tools">
             <input type="text" name="message" placeholder="Введите сообщение">

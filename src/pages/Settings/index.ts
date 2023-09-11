@@ -1,5 +1,5 @@
-import Block, { Props } from "../../utils/Block";
-import HashRouter from "../../utils/HashRouter";
+import Block, { Props } from "../../core/Block";
+import HashRouter from "../../core/HashRouter";
 import SettingsBlock from "../../components/SettingsBlock";
 import SettingsItem from "../../components/SettingsItem";
 import template from "./settings.hbs";

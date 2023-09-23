@@ -30,10 +30,10 @@ abstract class Block<IProps extends Props = Props> {
   } as const;
 
   private id = nanoid(6);
-  protected props: RealProps<IProps>;
+  protected props: RealProps<IProps> & Props;
   protected children: Children<IProps>;
   private eventBus = new EventBus();
-  private _element: HTMLElement;
+  private _element = document.createElement("alala") as Element;
 
   constructor(propsWithChildren: IProps) {
     const { props, children } = Block.getChildrenAndProps(propsWithChildren);
@@ -47,7 +47,7 @@ abstract class Block<IProps extends Props = Props> {
   }
 
   private static getChildrenAndProps(childrenAndProps: object) {
-    const props: Record<string, any> = {};
+    const props: Record<string, unknown> = {};
     const children: Record<string, Block | Block[]> = {};
 
     Object.entries(childrenAndProps).forEach(([key, value]) => {
@@ -84,13 +84,7 @@ abstract class Block<IProps extends Props = Props> {
     this.eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
 
-  _createResources() {
-    this._element = document.createElement("div");
-  }
-
   private _init() {
-    this._createResources();
-
     this.init();
 
     this.eventBus.emit(Block.EVENTS.FLOW_RENDER);
@@ -139,20 +133,37 @@ abstract class Block<IProps extends Props = Props> {
   }
 
   private _render() {
-    const fragment = this.render();
-
+    const { firstElementChild: newElement } = this.render() as DocumentFragment & { firstElementChild: Element};
     this._removeEvents();
+    if (window.isDebug) debugger;
 
-    const newElement = fragment.firstElementChild as HTMLElement;
-    this._element.replaceWith(newElement);
-    this._element = newElement;
+    const replaceSmart = (target: Element, source: Element, withAssign = true) => {
+      if (!target.cloneNode(false).isEqualNode(source.cloneNode(false))) {
+        target.replaceWith(source);
+        if (withAssign) {
+          this._element = source;
+        }
+      } else {
+        for (let i = 0; i < source.childElementCount; i++) {
+          const first = target.children[i];
+          const second = source.children[i];
+          if (!first) {
+            target.append(second);
+          } else if (!first.isEqualNode(second)) {
+            first.replaceWith(second.cloneNode(true));
+          }
+        }
+      }
+    };
+
+    replaceSmart(this._element, newElement);
 
     if (this.props.className) this._element.classList.add(...this.props.className);
 
     this._addEvents();
   }
 
-  protected compile(template: HandlebarsTemplateDelegate,  context: any): DocumentFragment {
+  protected compile(template: HandlebarsTemplateDelegate,  context: any) {
     const contextAndStubs = { ...context };
 
     Object.entries(this.children as Record<string, Block | Block[]>).forEach(([name, component]) => {
@@ -192,9 +203,7 @@ abstract class Block<IProps extends Props = Props> {
     return temp.content;
   }
 
-  protected render(): DocumentFragment {
-    return new DocumentFragment();
-  }
+  protected abstract render(): DocumentFragment;
 
   getContent() {
     return this.element;

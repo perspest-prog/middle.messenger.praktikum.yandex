@@ -13,7 +13,6 @@ interface Options {
 }
 
 type OptionsWithoutMethod = Omit<Options, 'method'>;
-type HTTPMethod<T = unknown> = (url: string, options?: OptionsWithoutMethod) => Promise<T>;
 
 function queryStringify(data?: object): string {
     if (!data) {
@@ -36,16 +35,17 @@ class HTTPTransport {
         return this.request<T>(url + str, {...options, method: METHODS.GET}, options.timeout);
     }
 
-    public post: HTTPMethod = (url, options = {}) => {
-        return this.request(url, {...options, method: METHODS.POST}, options.timeout);
-    };
-    public put: HTTPMethod = (url, options = {}) => {
-        return this.request(url, {...options, method: METHODS.PUT}, options.timeout);
-    };
+    public post<T>(url: string, options: OptionsWithoutMethod = {}) {
+        return this.request<T>(url, {...options, method: METHODS.POST}, options.timeout);
+    }
 
-    public delete: HTTPMethod = (url, options = {}) => {
-        return this.request(url, {...options, method: METHODS.DELETE}, options.timeout);
-    };
+    public put<T>(url: string, options: OptionsWithoutMethod = {}) {
+        return this.request<T>(url, {...options, method: METHODS.PUT}, options.timeout);
+    }
+
+    public delete<T>(url: string, options: OptionsWithoutMethod = {}) {
+        return this.request<T>(url, {...options, method: METHODS.DELETE}, options.timeout);
+    }
 
     private request<T>(url: string, options: Options, timeout = 5000) {
         const {method, data} = options;

@@ -28,7 +28,7 @@ export interface State {
         code: number;
         reason?: string;
     }
-    user?: User;
+    user: User;
     chats: Chat[];
     messages?: object[];
 }

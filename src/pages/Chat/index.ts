@@ -10,6 +10,8 @@ import "./chat.scss";
 import SmallForm from "../../components/SmallForm";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
+import Store from "../../core/Store";
+import Popup from "../../components/Popup";
 
 interface ChatPageProps extends Props {
     modal: Modal
@@ -18,13 +20,13 @@ interface ChatPageProps extends Props {
 }
 
 const test = connect(List<Chat>, ({chats}) => ({
-    items: chats?.map(({title}) => new Chat({title: title, message: title}))
+    items: chats?.map(({title, id}) => new Chat({title: title, message: title, chatId: id, popup: new Popup({label: "Hi"})}))
 }));
 
 class ChatPage extends Block<ChatPageProps>{
     constructor() {
         super({
-            modal: new Modal({isVisible: true, content: new SmallForm({title: "wad"})}),
+            modal: new Modal({isVisible: false, content: new SmallForm({title: "wad"})}),
             chats: new test,
             messages: new List({items: [new Message({content: "wdwdawdawd", type: "tail-in"})]})
         });

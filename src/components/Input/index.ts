@@ -1,4 +1,5 @@
 import Block, { Props } from "../../core/Block";
+import checkValid from "../../utils/checkValid";
 import template from "./input.hbs";
 import "./input.scss";
 
@@ -11,16 +12,6 @@ interface InputProps extends Props {
 }
 
 class Input extends Block<InputProps>{
-    static REGEXP = {
-        phone: /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im,
-        email: /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu,
-        password: /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/,
-        login: /^[a-zA-Z0-9!@#$%^&*]{4,16}$/,
-        first_name: /^[a-zA-Zа-яА-Я]{0,16}$/,
-        second_name: /^[a-zA-Zа-яА-Я]{0,16}$/
-    };
-
-
     constructor(props: InputProps) {
         super(props);
     }
@@ -28,8 +19,7 @@ class Input extends Block<InputProps>{
     protected init(): void {
         this.props.events = {
             change: this.changeHandler.bind(this),
-            click: (e) => this.setVisible(e!),
-            focusout: this.checkValid.bind(this)
+            click: (e) => this.setVisible(e)
         };
     }
 
@@ -49,7 +39,7 @@ class Input extends Block<InputProps>{
         this.setProps({
             value: (e.target as HTMLInputElement).value
         });
-        this.checkValid();
+        checkValid(this);
     }
 
     public getName() {
@@ -57,36 +47,7 @@ class Input extends Block<InputProps>{
     }
 
     public getValue() {
-        return this.props.value;
-    }
-
-    public checkValid(): void {
-        if (!this.getValue()) {
-            this.setProps({error: "Заполните это поле"});
-        } else if (!Input.REGEXP[this.getName()].test(this.getValue())) {
-            switch (this.getName()) {
-                case "email":
-                    this.setProps({error: "Введите корректную почту"});
-                    break;
-                case "phone":
-                    this.setProps({error: "Введите корректный номер телефона"});
-                    break;
-                case "password":
-                    this.setProps({error: "Длина пароля должна быть более 6 символов. Пароль должен содержать цифры и специальные символы"});
-                    break;
-                case "first_name":
-                    this.setProps({error: "Имя может содержать только русские и английские буквы"});
-                    break;
-                case "second_name":
-                    this.setProps({error: "Фамилия может содержать только русские и английские буквы"});
-                    break;
-                case "login":
-                    this.setProps({error: "Логин должен быть от 4 до 16 символов"});
-                    break;
-            }
-        } else {
-            this.setProps({error: ''});
-        }
+        return this.props.value || "";
     }
 }
 

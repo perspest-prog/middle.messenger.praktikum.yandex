@@ -15,7 +15,7 @@ export class Route {
             this.page = new this.pageType;
         }
         
-        element.appendChild(this.page.getContent());
+        element.append(this.page.getContent());
         this.page.dispatchComponentDidMount();
     }
 

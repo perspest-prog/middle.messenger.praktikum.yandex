@@ -21,13 +21,18 @@ class SmallForm extends Block<FormProps> {
     protected init(): void {
         this.setProps({
             events: {
-                submit: (e: SubmitEvent) => {console.log((e.target)); e.preventDefault()}
+                submit: this.onSubmit.bind(this)
             }
-        })
+        });
     }
 
     protected render(): DocumentFragment {
         return this.compile(template, this.props);
+    }
+
+    private onSubmit(event: SubmitEvent) {
+        event.preventDefault();
+        console.log(1);
     }
 }
 

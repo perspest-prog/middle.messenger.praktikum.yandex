@@ -18,6 +18,10 @@ class ChatsAPI extends BaseAPI {
         return this.http.delete("/", {data});
     }
 
+    addUsers(data: {users: number[], chatId: number}) {
+        return this.http.put("/users", {data});
+    }
+
     getToken(chatId: number) {
         return this.http.post<{token: string}>(`/token/${chatId}`);
     }

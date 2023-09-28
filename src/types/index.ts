@@ -26,7 +26,7 @@ export interface SignInData {
 export interface State {
     error?: {
         code: number;
-        reason?: string;
+        reason: string;
     }
     user: User;
     chats: Chat[];

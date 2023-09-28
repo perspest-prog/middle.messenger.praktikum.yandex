@@ -1,6 +1,6 @@
 import AuthAPI from "../API/AuthAPI";
 import Router from "../core/Router";
-import store from "../core/Store";
+import Store from "../core/Store";
 import { SignInData, SignUpData } from "../types";
 
 class AuthController {
@@ -18,7 +18,7 @@ class AuthController {
 
             Router.navigate("/chat");
         } catch (e) {
-            store.set("error", e);
+            Store.set("error", e);
         }
     }
 
@@ -30,7 +30,7 @@ class AuthController {
 
             Router.navigate("/chat");
         } catch (e) {
-            store.set("error", e);
+            Store.set("error", e);
         }
     }
 
@@ -38,17 +38,17 @@ class AuthController {
         try {
             await this.api.logout();
 
-            store.set("user", undefined);
+            Store.set("user", undefined);
 
             Router.navigate("/login");
         } catch (e) {
-            store.set("error", e);
+            Store.set("error", e);
         }
     }
 
     async getUser() {
         const user = await this.api.getUser();
-        store.set("user", user);
+        Store.set("user", user);
     }
 }
 

@@ -28,7 +28,6 @@ const checkValid = (input: InputLike) => {
     if (name in REGEXP) {
         return REGEXP[name as keyof typeof REGEXP].every((reg, i) => {
             if (reg.test(input.getValue())) {
-                console.log(`${name}: ${input.getValue()}`);
                 input.setProps({error: ""});
                 return true;
             } else {

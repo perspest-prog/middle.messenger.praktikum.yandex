@@ -33,7 +33,7 @@ abstract class Block<IProps extends Props = Props> {
   protected props: RealProps<IProps> & Props;
   protected children: Children<IProps>;
   private eventBus = new EventBus();
-  private _element = document.createElement("alala") as Element;
+  private element = document.createElement("temp") as Element;
 
   constructor(propsWithChildren: IProps) {
     const { props, children } = Block.getChildrenAndProps(propsWithChildren);
@@ -65,7 +65,7 @@ abstract class Block<IProps extends Props = Props> {
     const {events = {}} = this.props as Props;
 
     Object.keys(events).forEach(eventName => {
-      this._element.addEventListener(eventName, events[eventName]);
+      this.element.addEventListener(eventName, events[eventName]);
     });
   }
 
@@ -73,7 +73,7 @@ abstract class Block<IProps extends Props = Props> {
     const {events = {}} = this.props as Props;
 
     Object.keys(events).forEach(eventName => {
-      this._element.removeEventListener(eventName, events[eventName]);
+      this.element.removeEventListener(eventName, events[eventName]);
     });
   }
 
@@ -86,8 +86,9 @@ abstract class Block<IProps extends Props = Props> {
 
   private _init() {
     this.init();
-
-    this.eventBus.emit(Block.EVENTS.FLOW_RENDER);
+    if (this.element.tagName === "TEMP") {
+      this.eventBus.emit(Block.EVENTS.FLOW_RENDER);
+    }
   }
 
   protected init() {}
@@ -118,7 +119,7 @@ abstract class Block<IProps extends Props = Props> {
     return true;
   }
 
-  setProps = (nextProps: any) => {
+  setProps = (nextProps: Partial<typeof this.props | typeof this.children>) => {
     if (!nextProps) {
       return;
     }
@@ -128,37 +129,31 @@ abstract class Block<IProps extends Props = Props> {
     Object.assign(this.children, children);
   };
 
-  get element() {
-    return this._element;
-  }
-
   private _render() {
     const { firstElementChild: newElement } = this.render() as DocumentFragment & { firstElementChild: Element};
     this._removeEvents();
-    if (window.isDebug) debugger;
 
     const replaceSmart = (target: Element, source: Element, withAssign = true) => {
       if (!target.cloneNode(false).isEqualNode(source.cloneNode(false))) {
         target.replaceWith(source);
         if (withAssign) {
-          this._element = source;
+          this.element = source;
         }
-      } else {
-        for (let i = 0; i < source.childElementCount; i++) {
-          const first = target.children[i];
-          const second = source.children[i];
-          if (!first) {
-            target.append(second);
-          } else if (!first.isEqualNode(second)) {
-            first.replaceWith(second.cloneNode(true));
-          }
+      } else for (let i = 0; i < source.childElementCount; i++) {
+        const first = target.children[i];
+        const second = source.children[i];
+        if (!first) {
+          target.append(second);
+        } else if (!first.isEqualNode(second)) {
+          first.replaceWith(second.cloneNode(true));
         }
       }
     };
 
-    replaceSmart(this._element, newElement);
+    this.element.replaceWith(newElement);
+    this.element = newElement;
 
-    if (this.props.className) this._element.classList.add(...this.props.className);
+    if (this.props.className) this.element.classList.add(...this.props.className);
 
     this._addEvents();
   }
@@ -174,11 +169,9 @@ abstract class Block<IProps extends Props = Props> {
       }
     });
 
-    const html = template(contextAndStubs);
-
     const temp = document.createElement('template');
 
-    temp.innerHTML = html;
+    temp.innerHTML = template(contextAndStubs);
 
     const replaceStub = (component: Block) => {
       const stub = temp.content.querySelector(`[data-id="${component.id}"]`);
@@ -187,9 +180,9 @@ abstract class Block<IProps extends Props = Props> {
         return;
       }
 
-      component.getContent().append(...Array.from(stub.childNodes));
+      //component.element.append(...Array.from(stub.childNodes));
 
-      stub.replaceWith(component.getContent());
+      stub.replaceWith(component.element);
     };
 
     Object.entries(this.children as Record<string, Block | Block[]>).forEach(([, component]) => {

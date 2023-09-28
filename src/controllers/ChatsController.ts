@@ -19,6 +19,10 @@ class ChatsController {
 
         Store.set("chats", chats);
     }
+    
+    selectChat(chatId: number) {
+        console.log(this, chatId);
+    }
 }
 
 export default new ChatsController();

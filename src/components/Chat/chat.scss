@@ -7,7 +7,7 @@
 		height: 20vh;
 
 		border-bottom: 3px solid var(--bg-color-3);
-		background-color: var(--bg-color-2);
+		background-color: var(--bg-color-1);
 	}
 
 	&__top {
@@ -27,7 +27,7 @@
 	&__container {
 		height: 80vh;
 		padding: 1px 4px 0;
-		background-color: var(--bg-color-2);
+		background-color: var(--bg-color-1);
 	}
 
 	&__item {
@@ -36,13 +36,14 @@
 		flex-direction: row;
 
 		cursor: pointer;
+		user-select: none;
 
 		height: 75px;
 		padding: 5px;
 		border-radius: 10px;
 		
 		&:hover {
-			background-color: var(--msg-color-1);
+			background-color: var(--bg-color-2);
 		}
 	}
 

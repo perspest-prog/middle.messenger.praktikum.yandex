@@ -19,7 +19,7 @@ class Input extends Block<InputProps>{
     protected init(): void {
         this.props.events = {
             change: this.changeHandler.bind(this),
-            click: (e) => this.setVisible(e)
+            click: this.setVisible.bind(this)
         };
     }
 
@@ -27,8 +27,8 @@ class Input extends Block<InputProps>{
         return this.compile(template, this.props);
     }
 
-    private setVisible(event: Event): void {
-        if (event.target === this.element.querySelector('.visible')) {
+    private setVisible(event: PointerEvent): void {
+        if ((event.target as Element).classList.contains("visible")) {
             this.setProps({
                 type: this.props.type === "password" ? "text" : "password"
             });

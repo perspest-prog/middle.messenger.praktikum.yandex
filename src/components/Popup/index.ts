@@ -1,8 +1,13 @@
 import Block, { Props } from "../../core/Block";
-import template from "./popup.hbs";
+import ClickItem from "../ClickItem";
+import template from "./template.hbs";
+import "./styles.scss";
 
 interface PopupProps extends Props {
-    label: string;
+    isVisible: boolean;
+    x: number;
+    y: number;
+    items: ClickItem[]
 }
 
 class Popup extends Block<PopupProps> {

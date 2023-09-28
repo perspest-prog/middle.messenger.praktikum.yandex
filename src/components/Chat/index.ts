@@ -1,7 +1,8 @@
 import Block, { Props } from "../../core/Block";
+import ChatsController from "../../controllers/ChatsController";
+import Popup from "../Popup";
 import template from "./chat.hbs";
 import "./chat.scss";
-import Popup from "../Popup";
 
 interface ChatProps extends Props{
     title: string;
@@ -10,7 +11,7 @@ interface ChatProps extends Props{
     popup: Popup;
 }
 
-class Chat extends Block<ChatProps>{
+class Chat extends Block<ChatProps> {
     constructor(props: ChatProps){
         super(props);
     }
@@ -18,7 +19,8 @@ class Chat extends Block<ChatProps>{
     protected init(): void {
         this.setProps({
             events: {
-                click: this.onContext.bind(this)
+                click: ChatsController.selectChat.call(ChatsController, this.props.chatId),
+                contextmenu: this.onContextMenu.bind(this)
             }
         });
     }
@@ -27,8 +29,11 @@ class Chat extends Block<ChatProps>{
         return this.compile(template, this.props);
     }
 
-    private onContext(e: MouseEvent) {
-        this.children.popup.setProps({label: "123"});
+    private onContextMenu(event: MouseEvent) {
+        this.children.popup.setProps({
+            x: event.x,
+            y: event.y
+        });
     }
 }
 

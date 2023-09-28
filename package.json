@@ -31,7 +31,7 @@
     "@typescript-eslint/parser": "^5.57.1",
     "eslint": "^8.37.0",
     "nanoid": "^4.0.2",
-    "parcel": "^2.9.1",
+    "parcel": "^2.9.3",
     "stylelint": "^13.13.1",
     "stylelint-config-standard": "^22.0.0",
     "stylelint-order": "^4.1.0",

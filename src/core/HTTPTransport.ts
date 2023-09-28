@@ -56,7 +56,7 @@ class HTTPTransport {
 
             xhr.onreadystatechange = () => {
                 if (xhr.readyState === XMLHttpRequest.DONE) {
-                  if (xhr.status < 400 && xhr.status !== 0) {
+                  if (xhr.status < 400/* && xhr.status !== 0*/) {
                     resolve(xhr.response);
                   } else {
                     reject({...xhr.response, code: xhr.status});

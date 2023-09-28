@@ -8,10 +8,10 @@ import Message from "../../components/Message";
 import template from "./chat.hbs";
 import "./chat.scss";
 import SmallForm from "../../components/SmallForm";
-import Button from "../../components/Button";
-import Input from "../../components/Input";
-import Store from "../../core/Store";
 import Popup from "../../components/Popup";
+import Input from "../../components/Input";
+import Button from "../../components/Button";
+
 
 interface ChatPageProps extends Props {
     modal: Modal
@@ -20,13 +20,28 @@ interface ChatPageProps extends Props {
 }
 
 const test = connect(List<Chat>, ({chats}) => ({
-    items: chats?.map(({title, id}) => new Chat({title: title, message: title, chatId: id, popup: new Popup({label: "Hi"})}))
+    items: chats?.map(({title, id}) => new Chat({
+        title: title, message: title, chatId: id,
+        popup: new Popup({
+            isVisible: true,
+            x: 10,
+            y: 20,
+            items: [{label: "Добавить"}, {label: "Удалить чат"}]
+        })
+    }))
 }));
 
-class ChatPage extends Block<ChatPageProps>{
+
+const addUserForm = new SmallForm({
+    title: "Добавить пользователя",
+    inputs: [new Input({type: "number", placeholder: "ID пользователя", name: "user", visible: false})],
+    button: new Button({label: "Добавить", type: "ahaha"})
+});
+
+class ChatPage extends Block<ChatPageProps> {
     constructor() {
         super({
-            modal: new Modal({isVisible: false, content: new SmallForm({title: "wad"})}),
+            modal: new Modal({isVisible: true, content: addUserForm}),
             chats: new test,
             messages: new List({items: [new Message({content: "wdwdawdawd", type: "tail-in"})]})
         });
